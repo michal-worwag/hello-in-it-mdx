@@ -1,20 +1,13 @@
-import { readdir } from "fs/promises";
+import { readdir } from 'fs/promises';
 
-export async function getJSQuestions(): Promise<any[]> {
-  const categories = (
-    await readdir("./src/app/questions", { withFileTypes: true })
-  ).filter((dirent) => dirent.isDirectory());
-
-  console.log("Categories", categories);
-  // Retrieve slugs from post routes
+export async function getQuestions(category: string): Promise<any[]> {
   const slugs = (
-    await readdir("./src/app/questions/javascript", { withFileTypes: true })
+    await readdir(`./src/app/questions/${category}`, { withFileTypes: true })
   ).filter((dirent) => dirent.isDirectory());
 
-  // Retrieve metadata from MDX files
   const posts = await Promise.all(
     slugs.map(async ({ name }) => {
-      const filePath = `@/src/app/questions/javascript/${name}/page.mdx`;
+      const filePath = `@/src/app/questions/${category}/${name}/page.mdx`;
 
       try {
         const { metadata } = await import(filePath);
