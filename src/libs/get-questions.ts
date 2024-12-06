@@ -14,7 +14,7 @@ export async function getQuestions(category: string): Promise<any[]> {
     })
   );
 
-  questions.sort((a, b) => b.slug - a.slug);
+  questions.sort((a, b) => +new Date(b.publishDate) - +new Date(a.publishDate));
 
   return questions;
 }
