@@ -5,22 +5,16 @@ export async function getQuestions(category: string): Promise<any[]> {
     await readdir(`./src/app/questions/${category}`, { withFileTypes: true })
   ).filter((dirent) => dirent.isDirectory());
 
-  const posts = await Promise.all(
+  const questions = await Promise.all(
     slugs.map(async ({ name }) => {
-      const filePath = `@/src/app/questions/${category}/${name}/page.mdx`;
-
-      try {
-        const { metadata } = await import(filePath);
-        return { slug: name, ...metadata };
-      } catch (error) {
-        console.error(`Failed to load module at ${filePath}`, error);
-        return { slug: name };
-      }
+      const { metadata } = await import(
+        `../app/questions/${category}/${name}/page.mdx`
+      );
+      return { slug: name, ...metadata };
     })
   );
 
-  // Sort posts from newest to oldest
-  posts.sort((a, b) => +new Date(b.publishDate) - +new Date(a.publishDate));
+  questions.sort((a, b) => b.slug - a.slug);
 
-  return posts;
+  return questions;
 }
