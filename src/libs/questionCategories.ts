@@ -9,19 +9,14 @@ export async function getQuestionCategories(): Promise<any[]> {
 
   const sortedCategories = await Promise.all(
     categories.map(async (category) => {
-      const filePath = `@/src/app/questions/${category}/page.mdx`;
-
-      try {
-        const { metadata } = await import(filePath);
-        return { slug: category, ...metadata };
-      } catch (error) {
-        console.error(`Failed to load module at ${filePath}`, error);
-        return { slug: category };
-      }
+      const { metadata } = await import(
+        `../app/questions/${category}/page.mdx`
+      );
+      return { slug: category, ...metadata };
     })
   );
 
-  sortedCategories.sort((a, b) => +new Date(b.slug) - +new Date(a.slug));
+  sortedCategories.sort((a, b) => b.slug - a.slug);
 
   return sortedCategories;
 }
