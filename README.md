@@ -17,3 +17,13 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [Explain the purpose of the useEffect hook in React](https://helloin.it/questions/react/explain-the-purpose-of-the-useeffect-hook-in-react)
 - [What are React Fragments, and why are they used?t](https://helloin.it/questions/react/what-are-react-fragments-and-why-are-they-used)
 - [What is the difference between controlled and uncontrolled components?t](https://helloin.it/questions/react/what-is-the-difference-between-controlled-and-uncontrolled-components)
+
+### 3. [TypeScript Questions](https://helloin.it/questions/typescript/)
+
+- [Explain the concept of Union and Intersection types](https://helloin.it/questions/typescript/typescript-union-intersection-types)
+- [What are decorators in TypeScript?](https://helloin.it/questions/typescript/typescript-decorators)
+- [How does TypeScript handle enums?](https://helloin.it/questions/typescript/typescript-enums)
+- [What are generics in TypeScript? Why are they useful?](https://helloin.it/questions/typescript/typescript-generics)
+- [What are interfaces in TypeScript? How do they differ from types?](https://helloin.it/questions/typescript/typescript-interfaces-vs-types)
+- [What is the purpose of the unknown type? How is it different from any?](https://helloin.it/questions/typescript/typescript-unknown-vs-any)
+- [What is TypeScript, and how is it different from JavaScript?](https://helloin.it/questions/typescript/what-is-typescript-difference-with-javascript)
