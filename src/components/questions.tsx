@@ -8,7 +8,7 @@ export async function Questions({ category }: { category: string }) {
     <>
       {questions.length ? (
         <ol className='text-gray-800 list-decimal pl-5 space-y-2'>
-          {questions.map(({ slug, title, publishDate, description }) => (
+          {questions.map(({ slug, title }) => (
             <li key={slug} className='pl-1'>
               <h2 className='text-gray-800 text-lg font-medium mt-8 mb-3'>
                 <Link
@@ -18,10 +18,6 @@ export async function Questions({ category }: { category: string }) {
                   {title}
                 </Link>
               </h2>
-              {description ?? (
-                <p className='text-gray-800 leading-snug'>{description}</p>
-              )}
-              <Published date={publishDate} />
             </li>
           ))}
         </ol>
