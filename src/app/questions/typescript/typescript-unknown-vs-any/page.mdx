@@ -1,0 +1,37 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the purpose of the unknown type? How is it different from any?',
+  publishDate: '2024-12-08T18:31:00Z',
+};
+
+# What is the purpose of the unknown type? How is it different from any?
+
+## Answer
+
+The `unknown` type is a safer alternative to `any`. It represents any value but requires type-checking before performing operations on it.
+
+```
+let value: unknown;
+
+value = "Hello";
+if (typeof value === "string") {
+  console.log(value.toUpperCase()); // Safe operation
+}
+
+// let num: number = value; // Error without type-checking
+```
+
+**Difference from `any`:**
+
+- `any` allows any operation, which may lead to runtime errors.
+- `unknown` forces type checks, improving type safety.
+
+[Read more about TypeScript unknown](https://www.typescriptlang.org/docs/handbook/2/objects.html#unknown)
+
+[Read more about TypeScript any](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
+
+[An `unknown` can't always fix an `any`](https://www.totaltypescript.com/an-unknown-cant-always-fix-an-any)
+
+<GithubEdit link='/questions/typescript/typescript-unknown-vs-any/page.mdx' />

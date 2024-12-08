@@ -1,0 +1,36 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are interfaces in TypeScript? How do they differ from types?',
+  publishDate: '2024-12-08T18:31:00Z',
+};
+
+# What are interfaces in TypeScript? How do they differ from types?
+
+## Answer
+
+Interfaces in TypeScript define the structure of an object. They can extend other interfaces and provide a way to enforce contracts in your code.
+
+```
+interface User {
+  name: string;
+  age: number;
+  isAdmin?: boolean; // Optional property
+}
+
+const user: User = { name: "Alice", age: 30 };
+
+```
+
+**Difference:**
+
+- Interfaces are extendable through extends, while types use intersection (&) to combine types.
+- Interfaces are primarily used for object shapes, whereas type is more versatile (can define union, tuple, or primitive types).
+
+[Read more about TypeScript interfaces](https://www.typescriptlang.org/docs/handbook/2/objects.html#interfaces)
+
+[Read more about TypeScript types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+
+[Type vs Interface: Which Should You Use?](https://www.totaltypescript.com/type-vs-interface-which-should-you-use)
+
+<GithubEdit link='/questions/typescript/typescript-interfaces-vs-types/page.mdx' />
