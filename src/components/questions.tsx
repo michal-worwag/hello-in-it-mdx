@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getQuestions } from '../libs/get-questions';
+import Author from './author';
 
 export async function Questions({ category }: { category: string }) {
   const questions = await getQuestions(category);
@@ -7,16 +8,17 @@ export async function Questions({ category }: { category: string }) {
     <>
       {questions.length ? (
         <ol className='text-gray-800 list-decimal pl-7 space-y-2'>
-          {questions.map(({ slug, title }) => (
+          {questions.map(({ slug, title, author }) => (
             <li key={slug} className='pl-1'>
-              <h2 className='text-gray-800 text-lg font-medium mt-8 mb-3'>
+              <p className='text-gray-800 text-lg font-medium mt-5 mb-2'>
                 <Link
                   href={`/questions/${category}/${slug}`}
-                  className='text-blue-500 hover:text-blue-700'
+                  className='text-blue-600 hover:text-blue-800'
                 >
                   {title}
                 </Link>
-              </h2>
+              </p>
+              {author && <Author author={author} />}
             </li>
           ))}
         </ol>

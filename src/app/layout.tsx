@@ -10,7 +10,6 @@ const fira = Fira_Code({
 
 export const metadata: Metadata = {
   title: 'HelloIn.IT - IT recruiting questions',
-  description: 'Your doze of IT recruting questions',
 };
 
 export default function RootLayout({
