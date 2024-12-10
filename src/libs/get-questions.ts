@@ -14,7 +14,7 @@ export async function getQuestions(category: string): Promise<any[]> {
     })
   );
 
-  questions.sort((a, b) => +new Date(b.publishDate) - +new Date(a.publishDate));
+  questions.sort((a, b) => a.slug.localeCompare(b.slug));
 
   return questions;
 }
