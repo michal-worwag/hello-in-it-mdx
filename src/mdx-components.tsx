@@ -24,10 +24,10 @@ const components = {
     <p className='text-gray-800 leading-snug' {...props} />
   ),
   ol: (props: ListProps) => (
-    <ol className='text-gray-800 list-decimal pl-5 space-y-2' {...props} />
+    <ol className='text-gray-800 list-decimal pl-7 space-y-2' {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul className='text-gray-800 list-disc pl-5 space-y-1' {...props} />
+    <ul className='text-gray-800 list-disc pl-7 space-y-1' {...props} />
   ),
   li: (props: ListItemProps) => <li className='pl-1' {...props} />,
   em: (props: ComponentPropsWithoutRef<'em'>) => (
