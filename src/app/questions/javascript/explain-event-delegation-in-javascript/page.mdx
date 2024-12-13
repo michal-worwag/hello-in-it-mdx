@@ -1,0 +1,59 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain event delegation in JavaScript',
+  publishDate: '2024-12-013T19:00:00Z',
+};
+
+# Explain event delegation in JavaScript
+
+## Answer:
+
+Event delegation in JavaScript is a technique where a single event listener is added to a parent element to manage events for its child elements, even those dynamically added in the future. This approach leverages the concept of event bubbling, where an event propagates from the target element up through its ancestors in the DOM.
+
+### How Event Delegation Works:
+
+1. Attach a single event listener to a parent element.
+2. Use the event object's target property to identify which child element triggered the event.
+3. Perform the necessary action based on the target.
+
+**Example:**
+
+```javascript
+// HTML
+<div id='parent'>
+  <button class='child'>Child 1</button>
+  <button class='child'>Child 2</button>
+</div>;
+
+// JavaScript
+document.getElementById('parent').addEventListener('click', function (event) {
+  if (event.target.classList.contains('child')) {
+    console.log(`Button ${event.target.textContent} clicked!`);
+  }
+});
+```
+
+**Explanation:**
+
+- The event listener is attached to the parent div with the ID parent.
+- Inside the listener, event.target identifies the specific button (Child 1 or Child 2) that was clicked.
+
+### Advantages of Event Delegation:
+
+1. Improved Performance:
+
+- Reduces the number of event listeners needed, especially for a large number of child elements.
+
+2. Handles Dynamic Elements:
+
+- Automatically works for elements added dynamically after the listener is set.
+
+### Use Cases:
+
+- Handling clicks on a dynamic list of items.
+- Managing form inputs or buttons generated at runtime.
+
+[MDN Web Docs: Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+
+<GithubEdit link='/questions/javascript/explain-event-delegation-in-javascript/page.mdx' />
