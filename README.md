@@ -10,6 +10,9 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 
 - [What are JavaScript data types?](https://helloin.it/questions/javascript/what-are-javascript-data-types)
 - [What is the difference between let, const, and var?](https://helloin.it/questions/javascript/what-is-the-difference-between-let-const-and-var)
+- [Explain the concept of "hoisting" in JavaScript](https://helloin.it/questions/javascript/explain-the-concept-of-hoisting-in-javascript)
+- [What is the event loop in JavaScript runtimes?](https://helloin.it/questions/javascript/what-is-the-event-loop-in-javascript-runtimes)
+- [Explain event delegation in JavaScript](https://helloin.it/questions/javascript/explain-event-delegation-in-javascript)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 
