@@ -20,7 +20,7 @@
     "sugar-high": "^0.7.5"
   },
   "devDependencies": {
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "postcss": "^8.4.49",
