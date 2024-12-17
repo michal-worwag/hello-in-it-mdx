@@ -1,0 +1,108 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are JavaScript polyfills for?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What are JavaScript polyfills for?
+
+## Answer
+
+### What Are JavaScript Polyfills?
+
+A polyfill is a piece of code (usually written in JavaScript) that provides modern functionality to older browsers or environments that do not natively support certain features.
+
+Polyfills are used to "fill in" gaps in browser compatibility by emulating missing features so that your code can run consistently across different environments.
+
+### Why Are Polyfills Needed?
+
+- JavaScript evolves over time, introducing new features in ES6 (ECMAScript 2015) and later versions.
+- Older browsers or environments may not support these features.
+- Polyfills allow developers to use modern JavaScript features without worrying about breaking functionality in older browsers.
+
+### How Do Polyfills Work?
+
+- A polyfill checks whether a certain feature exists in the browser.
+- If the feature does not exist, it implements the feature using older JavaScript that is supported.
+
+For example, if the `Array.prototype.includes()` method is missing in an older browser, a polyfill can add it manually.
+
+### **Example: Polyfill for `Array.prototype.includes()`**
+
+The `includes()` method checks whether an array contains a certain value. It was introduced in ES6, but older browsers like Internet Explorer do not support it.
+
+Here’s a polyfill for `includes()`:
+
+```javascript
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function (searchElement, fromIndex) {
+    if (this == null) throw new TypeError('"this" is null or not defined');
+    let array = Object(this);
+    let length = array.length >>> 0;
+    if (length === 0) return false;
+
+    let startIndex = fromIndex || 0;
+    let k = Math.max(
+      startIndex >= 0 ? startIndex : length - Math.abs(startIndex),
+      0
+    );
+
+    while (k < length) {
+      if (
+        array[k] === searchElement ||
+        (Number.isNaN(array[k]) && Number.isNaN(searchElement))
+      ) {
+        return true;
+      }
+      k++;
+    }
+    return false;
+  };
+}
+```
+
+- The code first checks if includes() already exists.
+- If it doesn't, the polyfill manually implements the same logic.
+
+### Common Use Cases for Polyfills
+
+1. New JavaScript Methods or Features
+
+- Example: `Array.prototype.includes`, `Object.assign`, `Promise`, `fetch` API.
+
+2. Browser-Specific Features
+
+- Ensuring features like `requestAnimationFrame`, `localStorage`, or `JSON` are available in older browsers.
+
+3. HTML5 and CSS3 Features
+
+- Some polyfills can emulate HTML5 features like the `<canvas>` element or provide CSS support for things like Flexbox.
+
+### How Are Polyfills Used?
+
+- **Manually Adding Polyfills**: You can add a polyfill script directly to your project, often before your main scripts.
+- **Using Libraries**: Popular libraries like Babel and core-js automatically include polyfills for modern JavaScript features.
+- **CDNs**: Services like polyfill.io provide tailored polyfills based on the browser's user agent.
+
+**Example of Loading Polyfills via CDN**:
+
+```html
+<script src="https://polyfill.io/v3/polyfill.min.js"></script>
+```
+
+### Popular Polyfill Libraries
+
+- core-js: A library for ES6+ polyfills (used by Babel).
+- polyfill.io: A service that serves polyfills specific to the browser requesting the page.
+- es6-promise: Provides a polyfill for the ES6 Promise API.
+
+### Summary
+
+- A polyfill is a piece of code that provides support for modern JavaScript features in environments or browsers that do not natively support them.
+- Polyfills enable consistent behavior across different platforms and browsers.
+- They are essential for developers who want to use modern features while ensuring compatibility with older browsers.
+
+[MDN Web Docs: Polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill)
+
+<GithubEdit link='/questions/javascript/11-what-are-javascript-polyfills-for/page.mdx' />

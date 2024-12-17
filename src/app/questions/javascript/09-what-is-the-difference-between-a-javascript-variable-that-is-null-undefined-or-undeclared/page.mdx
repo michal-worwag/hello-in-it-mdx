@@ -1,0 +1,87 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the difference between a JavaScript variable that is: null, undefined or undeclared?',
+  publishDate: '2024-12-17T19:00:00Z',
+};
+
+# What is the difference between a JavaScript variable that is: null, undefined or undeclared?
+
+## Answer
+
+In JavaScript, `null`, `undefined`, and undeclared variables represent different concepts of "no value" or "missing value." Understanding their differences is crucial to avoiding errors and writing cleaner code.
+
+1. `null`
+
+- **Definition**: null is an explicit value that represents the intentional absence of any object or value.
+- **Type**: It is a primitive value but, due to a historical bug in JavaScript, typeof null returns "object".
+- **Usage**: It is explicitly assigned by developers to indicate that a variable or object property does not currently have a value but is intended to have one later.
+
+**Example**:
+
+```javascript
+let a = null; // a is explicitly set to "no value"
+console.log(a); // null
+console.log(typeof a); // "object"
+```
+
+2. `undefined`
+
+- **Definition**: `undefined` means a variable has been declared but has not been assigned a value yet.
+- **Type**: It is a primitive value, and `typeof undefined` returns `"undefined"`.
+- **Usage**:
+  - Automatically assigned to uninitialized variables.
+  - A function returns `undefined` if it does not have a return statement.
+  - Accessing an object property or array element that does not exist returns `undefined`.
+
+**Example**:
+
+```javascript
+let b; // b is declared but not initialized
+console.log(b); // undefined
+console.log(typeof b); // "undefined"
+
+let obj = {};
+console.log(obj.value); // undefined (property does not exist)
+
+function noReturn() {}
+console.log(noReturn()); // undefined
+```
+
+3. **Undeclared**
+
+- **Definition**: An undeclared variable is one that has not been declared in the current scope. Attempting to use it will result in a `ReferenceError`.
+- **Behavior**: Unlike `null` and `undefined`, undeclared variables are not part of the execution context.
+- **Usage**: This usually happens when trying to use a variable without declaring it using `var`, `let`, or `const`.
+  Example:
+
+```javascript
+console.log(c); // ReferenceError: c is not defined
+```
+
+**Note**: If you accidentally assign a value to an undeclared variable (without `strict mode`), JavaScript creates it as a global variable.
+
+```javascript
+Skopiuj kod
+"use strict";
+x = 5; // ReferenceError: x is not defined
+```
+
+### Key Notes
+
+- `null` is intentional, `undefined` is unintentional, and undeclared is an outright error.
+- Always declare variables using `let`, `const`, or `var` to avoid undeclared errors.
+- Use `null` when you want to explicitly clear a value.
+- Avoid comparing values directly with `==` since it performs type coercion. Use `===` for strict equality checks.
+
+```javascript
+console.log(null == undefined); // true (type coercion)
+console.log(null === undefined); // false (strict check)
+```
+
+[MDN Web Docs: null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null)
+
+[MDN Web Docs: undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+
+<GithubEdit link='/questions/javascript/09-what-is-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared/page.mdx' />

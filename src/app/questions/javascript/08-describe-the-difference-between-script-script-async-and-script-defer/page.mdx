@@ -1,0 +1,59 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'Describe the difference between <script>, <script async> and <script defer>',
+  publishDate: '2024-12-17T19:00:00Z',
+};
+
+# Describe the difference between `<script>`, `<script async>` and `<script defer>`
+
+## Answer
+
+When including JavaScript in an HTML document, the behavior of how the script is loaded and executed can vary depending on the attributes used in the `<script>` tag. Below are the differences:
+
+1. `<script>` (default behavior):
+
+- The script is loaded synchronously and executed immediately.
+- It blocks the HTML parsing while it is being fetched and executed.
+- If there are multiple scripts, they are executed in the order they appear in the document.
+
+**Use case:** When the script depends on the HTML or other scripts that must run in a specific order.
+
+```html
+<script src="script.js"></script>
+```
+
+2. `<script async>`:
+
+- The script is loaded asynchronously, meaning it is fetched in parallel with HTML parsing.
+- Once the script is downloaded, it is executed immediately, which may interrupt HTML parsing.
+- Scripts with the async attribute do not guarantee execution order; they are executed as soon as they are ready.
+
+**Use case**: For scripts that are independent of other scripts or the page content, such as third-party analytics or ads.
+
+```html
+<script async src="script.js"></script>
+```
+
+3. `<script defer>`:
+
+- The script is fetched asynchronously (like async), but its execution is deferred until after the HTML parsing is complete.
+- Deferred scripts maintain their order of execution as they appear in the document.
+- Scripts with defer will not block HTML rendering.
+
+**Use case**: When scripts need to wait for the full DOM to be parsed but must still execute in order.
+
+```html
+<script defer src="script.js"></script>
+```
+
+### Key Notes:
+
+- Use `async` for independent scripts (e.g., analytics) where order doesn't matter.
+- Use `defer` for scripts that rely on the DOM and need to execute after parsing.
+- Avoid default `<script>` for performance-critical web pages, as it blocks rendering.
+
+[MDN Web Docs - script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+
+<GithubEdit link='/questions/javascript/08-describe-the-difference-between-script-script-async-and-script-defer/page.mdx' />

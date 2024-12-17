@@ -1,0 +1,173 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are JavaScript object property flags and descriptors?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What are JavaScript object property flags and descriptors?
+
+## Answer
+
+### What Are JavaScript Object Property Flags and Descriptors?
+
+In JavaScript, object properties have more than just a value; they also have property descriptors that control the behavior of the property. These descriptors include property flags like `writable`, `enumerable`, and `configurable`.
+
+The property descriptor defines the meta-attributes of a property that control whether the property can be modified, iterated over, or redefined.
+
+### Types of Property Descriptors
+
+There are two types of property descriptors:
+
+- **Data Property Descriptors**: These are for properties with a value.
+- **Accessor Property Descriptors**: These are for properties defined with getter and setter methods.
+
+### Property Flags in Data Property Descriptors
+
+For data properties, the following flags are available:
+
+1. `writable` (boolean):
+
+
+    - If `true`, the property’s value can be changed.
+    - If `false`, the property is read-only.
+
+2. `enumerable` (boolean):
+
+
+    - If `true`, the property is listed during enumeration (e.g., with `for...in` or `Object.keys()`).
+    - If `false`, the property is hidden from enumeration.
+
+3. `configurable` (boolean):
+
+
+    - If `true`, the property can be deleted or its descriptors can be modified.
+    - If `false`, the property cannot be reconfigured (e.g., changing `writable` or `enumerable`).
+
+4. `value`:
+
+
+    - This is the actual value of the property.
+
+### Example: Property Flags in Action
+
+We can view and modify property descriptors using `Object.getOwnPropertyDescriptor()` and `Object.defineProperty()`.
+
+**Example**:
+
+```javascript
+let user = {
+  name: 'Alice',
+};
+
+// Get property descriptor
+let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+console.log(descriptor);
+/*
+Output:
+{
+  value: "Alice",
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+*/
+
+// Make the property read-only
+Object.defineProperty(user, 'name', {
+  writable: false,
+  enumerable: false,
+});
+
+// Trying to change the value
+user.name = 'Bob'; // Fails silently in non-strict mode
+console.log(user.name); // "Alice"
+
+// Checking enumeration
+console.log(Object.keys(user)); // []
+
+// Trying to delete the property
+delete user.name; // Fails silently
+console.log(user.name); // "Alice"
+```
+
+### Accessor Property Descriptors
+
+For accessor properties, you define `get` and `set` methods instead of a `value`. Flags like `configurable` and `enumerable` still apply.
+
+**Flags for Accessor Properties**:
+
+- `get`: A function that returns the property value.
+- `set`: A function that sets the property value.
+- `enumerable` and `configurable`: Same as in data properties.
+
+**Example**:
+
+```javascript
+let user = {
+  firstName: 'Alice',
+  lastName: 'Smith',
+
+  // Define an accessor property "fullName"
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  set fullName(value) {
+    [this.firstName, this.lastName] = value.split(' ');
+  },
+};
+
+// Get fullName
+console.log(user.fullName); // "Alice Smith"
+
+// Set fullName
+user.fullName = 'Bob Johnson';
+console.log(user.firstName); // "Bob"
+console.log(user.lastName); // "Johnson"
+
+// View descriptor for fullName
+console.log(Object.getOwnPropertyDescriptor(user, 'fullName'));
+/*
+Output:
+{
+  get: [Function: get fullName],
+  set: [Function: set fullName],
+  enumerable: true,
+  configurable: true
+}
+*/
+```
+
+### Default Flags for Properties
+
+- When a property is created normally (e.g., `obj.prop = value`), all flags default to `true`.
+- When a property is defined using `Object.defineProperty`, any flags not explicitly set default to `false`.
+
+**Example**:
+
+```javascript
+Skopiuj kod
+let obj = {};
+Object.defineProperty(obj, "name", { value: "Alice" });
+
+console.log(Object.getOwnPropertyDescriptor(obj, "name"));
+/*
+Output:
+{
+  value: "Alice",
+  writable: false,
+  enumerable: false,
+  configurable: false
+}
+*/
+```
+
+### Conclusion
+
+- Property flags (`writable`, `enumerable`, `configurable`) define how properties behave.
+- Use `Object.getOwnPropertyDescriptor()` to view flags and `Object.defineProperty()` to modify them.
+- Accessor properties (`get` and `set`) allow dynamic property value retrieval and assignment.
+
+[MDN Web Docs: Property Descriptorss](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+
+<GithubEdit link='/questions/javascript/12-what-are-javascript-object-property-flags-and-descriptors/page.mdx' />
