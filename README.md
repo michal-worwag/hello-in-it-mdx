@@ -15,6 +15,11 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [05-What are JavaScript data types?](https://helloin.it/questions/javascript/05-what-are-javascript-data-types)
 - [06-What is the difference between let, const, and var?](https://helloin.it/questions/javascript/06-what-is-the-difference-between-let-const-and-var)
 - [07-What is the event loop in JavaScript runtimes?](https://helloin.it/questions/javascript/07-what-is-the-event-loop-in-javascript-runtimes)
+- [08-Describe the difference between <script>, <script async> and <script defer>](https://helloin.it/questions/javascript/08-describe-the-difference-between-script-script-async-and-script-defer)
+- [09-What is the difference between a JavaScript variable that is: null, undefined or undeclared?](https://helloin.it/questions/javascript/09-what-is-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)
+- [10-What are the differences between JavaScript ES2015 classes and ES5 function constructors?](https://helloin.it/questions/javascript/10-what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors)
+- [11-What are JavaScript polyfills for?](https://helloin.it/questions/javascript/11-what-are-javascript-polyfills-for)
+- [12-What are JavaScript object property flags and descriptors?](https://helloin.it/questions/javascript/12-what-are-javascript-object-property-flags-and-descriptors)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 
