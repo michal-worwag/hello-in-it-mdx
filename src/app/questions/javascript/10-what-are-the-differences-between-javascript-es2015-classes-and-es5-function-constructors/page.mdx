@@ -1,0 +1,200 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What are the differences between JavaScript ES2015 classes and ES5 function constructors?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What are the differences between JavaScript ES2015 classes and ES5 function constructors?
+
+## Answer
+
+In JavaScript, both ES5 function constructors and ES2015 classes are used to create objects and handle prototypes. However, ES2015 classes introduced a more structured and cleaner syntax for defining object-oriented logic compared to the ES5 function constructor approach.
+
+1. **Syntax and Readability**
+
+- ES5 Function Constructor:
+
+  In ES5, objects are created using constructor functions. You manually define methods on the constructor’s prototype to ensure reusability and performance.
+
+**Example**:
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.sayHello = function () {
+  console.log(`Hello, I am ${this.name}.`);
+};
+
+const person1 = new Person('Alice', 25);
+person1.sayHello(); // Hello, I am Alice.
+```
+
+- **ES2015 Classes**:
+
+  ES2015 introduced the class keyword, which provides a cleaner and more intuitive syntax for creating objects. It simplifies the syntax but works similarly under the hood.
+
+**Example**:
+
+```javascript
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  sayHello() {
+    console.log(`Hello, I am ${this.name}.`);
+  }
+}
+
+const person1 = new Person('Alice', 25);
+person1.sayHello(); // Hello, I am Alice.
+```
+
+**Key Difference**: The `class` syntax is more readable and avoids manual prototype manipulation.
+
+2. **`class` is Syntactic Sugar**
+
+- ES2015 classes are syntactic sugar over the existing prototype-based system. Under the hood, classes use the same prototype chain as function constructors.
+- The main difference is the cleaner syntax that abstracts away the prototype manipulation, making code easier to understand.
+
+**Example of Equivalent Function Constructor for a Class**:
+
+```javascript
+class ExampleClass {
+  method() {}
+}
+
+// Equivalent ES5 code:
+function ExampleClass() {}
+ExampleClass.prototype.method = function () {};
+```
+
+3. **Strict Mode**
+
+- **ES5 Function Constructor**: Does not enforce strict mode unless explicitly declared with `"use strict"`.
+- **ES2015 Classes**: Automatically enforce strict mode. You cannot use undeclared variables, assign to read-only properties, or other sloppy behaviors inside a class.
+
+Example:
+
+```javascript
+class Test {
+  constructor() {
+    undeclaredVariable = 5; // ReferenceError in ES2015 class
+  }
+}
+
+new Test();
+```
+
+4. **Behavior of `this`**
+
+- **ES5 Function Constructor**: If you forget to use `new` with a constructor function, `this` will refer to the global object (or `undefined` in strict mode).
+- **ES2015 Classes**: Using a class without `new` throws an error, preventing mistakes.
+
+**Example**:
+
+```javascript
+// ES5 Constructor
+function Person(name) {
+  this.name = name;
+}
+const p1 = Person('Alice'); // No "new" - this refers to global object
+console.log(p1); // undefined
+
+// ES2015 Class
+class PersonClass {
+  constructor(name) {
+    this.name = name;
+  }
+}
+const p2 = PersonClass('Alice'); // TypeError: Class constructor cannot be invoked without 'new'
+```
+
+5. **Hoisting**
+
+- **ES5 Function Constructor**: Function constructors are hoisted, so you can use them before they are defined.
+- **ES2015 Classes**: Classes are not hoisted. You must define a class before using it.
+
+**Example**:
+
+```javascript
+// ES5
+const obj1 = new Person();
+function Person() {}
+
+// ES2015
+const obj2 = new PersonClass(); // ReferenceError
+class PersonClass {}
+```
+
+6. **Inheritance**
+
+- **ES5 Function Constructor**: Inheritance is implemented manually using `Object.create()` or `call()`/`apply()` to inherit properties and methods.
+- **ES2015 Classes**: Classes introduce the `extends` keyword to simplify inheritance.
+
+**ES5 Example**:
+
+```javascript
+function Animal(name) {
+  this.name = name;
+}
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a sound.`);
+};
+
+function Dog(name, breed) {
+  Animal.call(this, name);
+  this.breed = breed;
+}
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+const dog = new Dog('Buddy', 'Golden Retriever');
+dog.speak(); // Buddy makes a sound.
+```
+
+**ES2015 Class Example**:
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);
+    this.breed = breed;
+  }
+}
+
+const dog = new Dog('Buddy', 'Golden Retriever');
+dog.speak(); // Buddy makes a sound.
+```
+
+**Key Difference**: ES2015 `extends` and `super` make inheritance much cleaner and easier to implement.
+
+7. **`[[FunctionKind]]` Internal Property**
+
+- **ES5 Function Constructors**: Regular functions.
+- **ES2015 Classes**: Have the internal property **[[FunctionKind]]** set to **classConstructor**. This prevents a class from being called like a normal function.
+
+### Conclusion
+
+While ES5 function constructors and ES2015 classes achieve similar results under the hood, ES2015 classes offer a cleaner and more structured syntax, making code easier to write and maintain. Additionally, classes simplify inheritance and enforce stricter behavior to reduce bugs.
+
+[MDN Web Docs: Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+[MDN Web Docs - Function.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype)
+
+<GithubEdit link='/questions/javascript/10-what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors/page.mdx' />
