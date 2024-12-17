@@ -8,13 +8,13 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 
 ### 1. [JavaScript Questions](https://helloin.it/questions/javascript/)
 
-- [What are JavaScript data types?](https://helloin.it/questions/javascript/what-are-javascript-data-types)
-- [What is the difference between let, const, and var?](https://helloin.it/questions/javascript/what-is-the-difference-between-let-const-and-var)
-- [Explain the concept of "hoisting" in JavaScript](https://helloin.it/questions/javascript/explain-the-concept-of-hoisting-in-javascript)
-- [What is the event loop in JavaScript runtimes?](https://helloin.it/questions/javascript/what-is-the-event-loop-in-javascript-runtimes)
-- [Explain event delegation in JavaScript](https://helloin.it/questions/javascript/explain-event-delegation-in-javascript)
-- [Explain how this works in JavaScript](https://helloin.it/questions/javascript/explain-how-this-works-in-javascript)
-- [Describe the difference between a cookie, sessionStorage and localStorage in browsers](https://helloin.it/questions/javascript/js_answers_completed.json)
+- [01-Describe the difference between a cookie, sessionStorage and localStorage in browsers](https://helloin.it/questions/javascript/01-describe-the-difference-between-a-cookie-sessionstorage-and-localstorage-in-browsers)
+- [02-Explain event delegation in JavaScript](https://helloin.it/questions/javascript/02-explain-event-delegation-in-javascript)
+- [03-Explain how this works in JavaScript](https://helloin.it/questions/javascript/03-explain-how-this-works-in-javascript)
+- [04-Explain the concept of "hoisting" in JavaScript](https://helloin.it/questions/javascript/04-explain-the-concept-of-hoisting-in-javascript)
+- [05-What are JavaScript data types?](https://helloin.it/questions/javascript/05-what-are-javascript-data-types)
+- [06-What is the difference between let, const, and var?](https://helloin.it/questions/javascript/06-what-is-the-difference-between-let-const-and-var)
+- [07-What is the event loop in JavaScript runtimes?](https://helloin.it/questions/javascript/07-what-is-the-event-loop-in-javascript-runtimes)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 

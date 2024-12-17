@@ -21,14 +21,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "postcss": "^8.4.49",
     "tailwindcss": "^4.0.0-beta.6",
     "typescript": "^5.7.2"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }
