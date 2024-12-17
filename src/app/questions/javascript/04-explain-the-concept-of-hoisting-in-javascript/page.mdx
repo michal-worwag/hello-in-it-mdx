@@ -1,0 +1,64 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain the concept of "hoisting" in JavaScript',
+  publishDate: '2024-12-013T19:00:00Z',
+};
+
+# Explain the concept of "hoisting" in JavaScript
+
+## Answer:
+
+Hoisting in JavaScript is a behavior in which variable and function declarations are moved to the top of their containing scope during the compilation phase, before the code is executed. This means that you can use variables and functions before they are declared in the code, though their initialization is not hoisted.s
+
+### Key Details:
+
+1. Function Declarations:
+
+- Entire function declarations are hoisted.
+- Example:
+
+```javascript
+greet();
+function greet() {
+  console.log('Hello, World!');
+}
+```
+
+This works because the `greet` function is hoisted to the top.
+
+2. Variable Declarations:
+
+- For `var`, the declaration is hoisted but not the initialization.
+
+```javascript
+console.log(a); // undefined
+var a = 10;
+```
+
+Here, `a` is hoisted and initialized with `undefined`.
+
+- For `let` and `const`, the declarations are hoisted, but they remain in a "temporal dead zone" until the code execution reaches their initialization.
+
+```javascript
+console.log(b); // ReferenceError
+let b = 10;
+```
+
+3. Class Declarations:
+
+- Like `let` and `const`, classes are also hoisted but are not initialized.
+
+```javascript
+const instance = new MyClass(); // ReferenceError
+class MyClass {}
+```
+
+### Key Points:
+
+- Only declarations are hoisted, not initializations.
+- This behavior can sometimes lead to unexpected bugs if not properly understood.
+
+[MDN Web Docs: Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+
+<GithubEdit link='/questions/javascript/explain-the-concept-of-hoisting-in-javascript/page.mdx' />

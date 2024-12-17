@@ -1,0 +1,85 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is the difference between let, const, and var?',
+  publishDate: '2024-12-06T19:01:00Z',
+};
+
+# What is the difference between let, const, and var?
+
+## Answer:
+
+**1. Scope:**
+
+- `var` is function-scoped.
+- `let` and `const` are block-scoped, meaning they are only accessible within the block where they are defined.
+
+**2. Redeclaration:**
+
+- `var` allows redeclaration of the same variable in the same scope.
+- `let` and `const` do not allow redeclaration in the same scope.
+
+**3. Reassignment:**
+
+- `var` and `let` allow reassignment.
+- `const` does not allow reassignment after initialization.
+
+**4. Hoisting:**
+
+- `var` is hoisted and initialized as `undefined`.
+- `let` and `const` are hoisted but remain uninitialized until their declaration is encountered. Accessing them before declaration results in a `ReferenceError`.
+
+### Examples
+
+**`var` example**
+
+```javascript
+function exampleVar() {
+  var x = 10;
+  if (true) {
+    var x = 20; // Same variable, re-declared
+    console.log(x); // 20
+  }
+  console.log(x); // 20
+}
+exampleVar();
+```
+
+**`let` example**
+
+```javascript
+function exampleLet() {
+  let x = 10;
+  if (true) {
+    let x = 20; // Different variable due to block scope
+    console.log(x); // 20
+  }
+  console.log(x); // 10
+}
+exampleLet();
+```
+
+**`const` example**
+
+```javascript
+function exampleConst() {
+  const x = 10;
+  // x = 20; // Error: Assignment to constant variable
+  console.log(x); // 10
+}
+exampleConst();
+```
+
+### Key Points
+
+- Use let for variables that will be reassigned later.
+- Use const for variables that should not change.
+- Avoid var in modern JavaScript development due to its function-scoping and hoisting behavior.
+
+[Read more about var](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/var)
+
+[Read more about const](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const)
+
+[Read more about let](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/let)
+
+<GithubEdit link='/questions/javascript/what-is-the-difference-between-let-const-and-var/page.mdx' />
