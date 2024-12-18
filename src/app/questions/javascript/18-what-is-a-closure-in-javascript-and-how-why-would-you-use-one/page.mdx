@@ -1,0 +1,74 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is a closure in JavaScript, and how/why would you use one?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What is a closure in JavaScript, and how/why would you use one?
+
+## Answer
+
+A closure in JavaScript is a function that "remembers" the variables from its outer scope, even after the outer function has finished executing. Closures are created whenever a function is defined inside another function and accesses variables from the outer function.
+
+**Example of a Closure:**
+
+```javascript
+function outerFunction(outerVariable) {
+  return function innerFunction(innerVariable) {
+    console.log(`Outer: ${outerVariable}, Inner: ${innerVariable}`);
+  };
+}
+
+const closureFunc = outerFunction('outside');
+closureFunc('inside'); // Outer: outside, Inner: inside
+```
+
+Here, innerFunction retains access to outerVariable from outerFunction's scope even after outerFunction has finished executing.
+
+### Why Use Closures?
+
+1. Data Encapsulation: Closures can be used to create private variables, hiding data from the global scope.
+
+```javascript
+function counter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+const increment = counter();
+console.log(increment()); // 1
+console.log(increment()); // 2
+```
+
+2. Maintaining State: Useful in scenarios where you need to maintain state across function calls.
+
+3. Callbacks and Event Handlers: Closures are common in asynchronous code to retain access to variables from their scope.
+
+```javascript
+function setup() {
+  const message = 'Event triggered!';
+  document.querySelector('#btn').addEventListener('click', function () {
+    console.log(message); // Closure keeps "message" alive
+  });
+}
+setup();
+```
+
+4. Factory Functions: Closures allow you to create customized functions with preset configurations.
+
+```javascript
+function makeMultiplier(multiplier) {
+  return function (num) {
+    return num * multiplier;
+  };
+}
+const double = makeMultiplier(2);
+console.log(double(5)); // 10
+```
+
+[MDN Web Docs: Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+<GithubEdit link='/questions/javascript/18-what-is-a-closure-in-javascript-and-how-why-would-you-use-one/page.mdx' />

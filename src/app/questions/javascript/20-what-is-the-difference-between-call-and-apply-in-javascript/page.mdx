@@ -1,0 +1,67 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is the difference between .call and .apply in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What is the difference between .call and .apply in JavaScript?
+
+## Answer
+
+The difference between `.call()` and `.apply()` in JavaScript lies in how they pass arguments to the function they invoke.
+
+### 1. `Function.prototype.call()`
+
+- Invokes a function with a specified this value and arguments passed individually.
+- Arguments are listed one by one, separated by commas.
+
+**Syntax**:
+
+```javascript
+func.call(thisArg, arg1, arg2, ...);
+```
+
+**Example**:
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: 'Alice' };
+greet.call(person, 'Hello', '!'); // Output: Hello, Alice!
+```
+
+### 2. `Function.prototype.apply()`
+
+- Invokes a function with a specified this value and arguments passed as an array.
+- Useful when arguments are already in array form.
+
+**Syntax**:
+
+```javascript
+func.apply(thisArg, [arg1, arg2, ...]);
+```
+
+**Example**:
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: 'Bob' };
+greet.apply(person, ['Hi', '?']); // Output: Hi, Bob?
+```
+
+### When to Use?
+
+- Use `.call()` when arguments are known explicitly.
+- Use `.apply()` when arguments are already in an array or need to be constructed dynamically.
+
+[MDN Web Docs: Function.prototype.call()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+
+[MDN Web Docs: Function.prototype.apply()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
+
+<GithubEdit link='/questions/javascript/20-what-is-the-difference-between-call-and-apply-in-javascript/page.mdx' />

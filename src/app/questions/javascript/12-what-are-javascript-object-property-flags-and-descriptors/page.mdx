@@ -28,26 +28,22 @@ For data properties, the following flags are available:
 
 1. `writable` (boolean):
 
-
-    - If `true`, the property’s value can be changed.
-    - If `false`, the property is read-only.
+   - If `true`, the property’s value can be changed.
+   - If `false`, the property is read-only.
 
 2. `enumerable` (boolean):
 
-
-    - If `true`, the property is listed during enumeration (e.g., with `for...in` or `Object.keys()`).
-    - If `false`, the property is hidden from enumeration.
+   - If `true`, the property is listed during enumeration (e.g., with `for...in` or `Object.keys()`).
+   - If `false`, the property is hidden from enumeration.
 
 3. `configurable` (boolean):
 
-
-    - If `true`, the property can be deleted or its descriptors can be modified.
-    - If `false`, the property cannot be reconfigured (e.g., changing `writable` or `enumerable`).
+   - If `true`, the property can be deleted or its descriptors can be modified.
+   - If `false`, the property cannot be reconfigured (e.g., changing `writable` or `enumerable`).
 
 4. `value`:
 
-
-    - This is the actual value of the property.
+   - This is the actual value of the property.
 
 ### Example: Property Flags in Action
 
@@ -168,6 +164,6 @@ Output:
 - Use `Object.getOwnPropertyDescriptor()` to view flags and `Object.defineProperty()` to modify them.
 - Accessor properties (`get` and `set`) allow dynamic property value retrieval and assignment.
 
-[MDN Web Docs: Property Descriptorss](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+[MDN Web Docs: Property Descriptors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
 <GithubEdit link='/questions/javascript/12-what-are-javascript-object-property-flags-and-descriptors/page.mdx' />

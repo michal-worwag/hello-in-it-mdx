@@ -1,0 +1,142 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'Explain the differences on the usage of foo between function foo() {} and var foo = function() {} in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# Explain the differences on the usage of foo between function foo() {} and var foo = function() {} in JavaScript
+
+## Answer
+
+In JavaScript, there are key differences in how `foo` behaves and is used between these two declarations:
+
+### 1. function `foo() {}`
+
+This is a function declaration.
+
+**Key Characteristics**:
+
+1. Hoisting:
+
+- Function declarations are hoisted, meaning the entire function is moved to the top of its containing scope at runtime.
+- This allows you to call the function before it is defined in the code.
+
+**Example**:
+
+```javascript
+foo(); // Works because the function is hoisted
+function foo() {
+  console.log('Function declaration');
+}
+```
+
+2. Scope:
+
+- The function `foo` is defined in the current scope (global or local to a function, depending on where it is declared).
+  **Example**:
+
+```javascript
+function test() {
+  function foo() {
+    console.log('Local scope');
+  }
+  foo(); // Works within the local scope
+}
+test();
+```
+
+3. Name Binding:
+
+- The function has a name (foo) that is bound to it, making it easier to reference itself within its body (e.g., for recursion).
+
+**Example**:
+
+```javascript
+function foo(n) {
+  if (n > 0) {
+    return foo(n - 1); // Recursion
+  }
+  return 'Done';
+}
+console.log(foo(3)); // "Done"
+```
+
+### 2. `var foo = function() {}`
+
+This is a function expression assigned to a variable.
+
+**Key Characteristics**:
+
+1. Hoisting:
+
+- The variable `foo` is hoisted, but only its declaration, not the function definition. This means the function is not available until the line where it is assigned is executed.
+
+**Example**:
+
+```javascript
+console.log(foo); // undefined (variable hoisted, but function not assigned yet)
+foo(); // Error: foo is not a function
+var foo = function () {
+  console.log('Function expression');
+};
+```
+
+2. Scope:
+
+- The variable `foo` is defined in the current scope (global or local). However, the function is only available after the assignment line is executed.
+
+**Example**:
+
+```javascript
+function test() {
+  console.log(foo); // undefined
+  var foo = function () {
+    console.log('Local function expression');
+  };
+  foo(); // Works now
+}
+test();
+```
+
+3. Name Binding:
+
+- If the function is anonymous (no name), it cannot reference itself.
+- If the function is named, the name is only available inside the function body for self-reference.
+
+**Anonymous Function**:
+
+```javascript
+var foo = function () {
+  console.log('Anonymous function');
+};
+foo(); // Works
+```
+
+**Named Function Expression**:
+
+```javascript
+var foo = function bar() {
+  console.log('Named function expression');
+  // bar() can reference itself here
+};
+foo(); // Works
+bar(); // Error: bar is not defined outside the function
+```
+
+### When to Use Which?
+
+- `function foo() {}`:
+  - When you need the function to be available throughout the scope, even before its definition.
+  - Ideal for standalone, reusable functions or utility functions.
+- `var foo = function() {}`:
+  - When you want the function to behave like any other variable (e.g., scoped to the block, hoisted only as a variable).
+  - Useful for conditional assignments or creating anonymous/named function expressions.
+
+### Conclusion
+
+- Use function declarations for functions that need to be available throughout the scope and benefit from hoisting.
+- Use function expressions for more controlled scoping, dynamic assignment, or when creating anonymous functions.
+
+<GithubEdit link='/questions/javascript/15-explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function-in-javascript/page.mdx' />

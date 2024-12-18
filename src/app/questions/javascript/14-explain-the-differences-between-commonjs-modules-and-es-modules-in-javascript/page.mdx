@@ -1,0 +1,171 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'Explain the differences between CommonJS modules and ES modules in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# Explain the differences between CommonJS modules and ES modules in JavaScript
+
+## Answer
+
+### 1. Introduction
+
+CommonJS and ES Modules are two different module systems in JavaScript used for organizing and sharing code between files.
+
+- CommonJS (CJS):
+  - Introduced in Node.js, the default module system for Node.js before ES modules.
+  - Uses `require()` to import and `module.exports` or `exports` to export.
+- ES Modules (ESM):
+  - Introduced in ES6 (ECMAScript 2015) as the standard JavaScript module system.
+  - Uses `import` and `export` syntax.
+  - Supported natively in modern browsers and Node.js.
+
+### 2. Syntax Differences
+
+**Importing Modules**
+
+- **CommonJS**:
+
+```javascript
+const fs = require('fs'); // Import a module
+const customModule = require('./customModule'); // Import a local file
+```
+
+- **ES Modules**:
+
+```javascript
+import fs from 'fs'; // Import a module
+import customModule from './customModule.js'; // Import a local file
+```
+
+**Exporting Modules**
+
+- **CommonJS**:
+
+```javascript
+// Single export
+module.exports = function () {
+  console.log('Exported function');
+};
+
+// Multiple exports
+exports.func1 = function () {
+  console.log('Function 1');
+};
+exports.func2 = function () {
+  console.log('Function 2');
+};
+```
+
+- **ES Modules**:
+
+```javascript
+// Single export
+export default function () {
+  console.log('Exported function');
+}
+
+// Multiple exports
+export function func1() {
+  console.log('Function 1');
+}
+export function func2() {
+  console.log('Function 2');
+}
+```
+
+### 3. Execution Model
+
+- **CommonJS**:
+  - Modules are loaded synchronously.
+  - Suitable for server-side environments like Node.js, where synchronous operations are acceptable.
+- **ES Modules**:
+  - Modules are loaded asynchronously.
+  - Better suited for browsers where asynchronous loading is essential for performance.
+
+### 4. Scope and Behavior
+
+- **CommonJS**:
+  - `require()` is dynamic, allowing conditional module loading.
+  - **Example**:
+
+```javascript
+Skopiuj kod
+if (someCondition) {
+const moduleA = require('./moduleA');
+}
+```
+
+- **ES Modules**:
+  - `import` is static, meaning imports must be declared at the top of the file and cannot be conditional.
+  - **Example (invalid syntax)**:
+
+```javascript
+// This will throw an error:
+if (someCondition) {
+  import './moduleA.js';
+}
+```
+
+### 5. Default Exports vs Named Exports
+
+- **CommonJS**:
+  - By default, you export a single object, function, or value using `module.exports`.
+  - Named exports can be simulated using `exports`.
+- **ES Modules**:
+  - Supports both default exports and named exports natively.
+
+### 6. File Extensions
+
+- **CommonJS**:
+  - Files typically use `.js` without needing explicit file extensions.
+- **ES Modules**:
+  - Requires explicit file extensions like `.js` or `.mjs` in most environments.
+
+### 7. Compatibility
+
+- **CommonJS**:
+  - Supported in Node.js by default.
+  - Not natively supported in browsers; requires tools like Webpack or Browserify for bundling.
+- **ES Modules**:
+  - Supported natively in modern browsers and Node.js (from version 13 with `type: "module"` in `package.json`).
+  - Requires tools like Babel for older browsers.
+
+### 8. Interoperability Between CJS and ESM
+
+- Importing a CommonJS module in an ES module:
+
+```javascript
+import fs from 'fs'; // Default behavior
+const path = require('path'); // Using CommonJS in an ESM file
+```
+
+- Importing an ES module in a CommonJS module:
+
+```javascript
+const { readFile } = await import('fs'); // Dynamic import required
+```
+
+### 9. Use Cases
+
+- **CommonJS**:
+  - Ideal for older Node.js projects or environments without ESM support.
+  - Simplifies working with legacy codebases.
+- **ES Modules**:
+  - The standard for new JavaScript projects.
+  - Better suited for client-side code and modern server-side applications.
+
+### Conclusion
+
+- Use CommonJS for older Node.js projects or when dealing with legacy environments.
+- Use ES Modules for modern JavaScript development, especially when targeting browsers or using tools like Webpack or Rollup for bundling.
+
+[MDN Web Docs: Import/Export](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import)
+
+[Node.js Documentation: CommonJS Modules](https://nodejs.org/docs/latest/api/modules.html)
+
+[Node.js Documentation: ECMAScript Modules](https://nodejs.org/docs/latest/api/esm.html)
+
+<GithubEdit link='/questions/javascript/14-explain-the-differences-between-commonjs-modules-and-es-modules-in-javascript/page.mdx' />
