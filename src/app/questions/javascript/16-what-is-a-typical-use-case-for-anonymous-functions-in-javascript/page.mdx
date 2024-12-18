@@ -1,0 +1,58 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is a typical use case for anonymous functions in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What is a typical use case for anonymous functions in JavaScript?
+
+## Answer
+
+Anonymous functions in JavaScript are functions without a name, used when the function is temporary and doesn’t need to be reused. Common use cases include:
+
+1. Callbacks: For asynchronous operations or event handling (e.g., setTimeout or addEventListener).
+
+```javascript
+setTimeout(function () {
+  console.log('Callback executed');
+}, 1000);
+```
+
+2. Array Methods: For map, filter, reduce, etc.
+
+```javascript
+const doubled = [1, 2, 3].map(function (num) {
+  return num * 2;
+});
+```
+
+3. Event Listeners: Used for DOM events.
+
+```javascript
+document.querySelector('#btn').addEventListener('click', function () {
+  console.log('Clicked');
+});
+```
+
+4. IIFEs: For immediate execution and scope encapsulation.
+
+```javascript
+(function () {
+  console.log('IIFE executed');
+})();
+```
+
+5. Dynamic Assignment: Assigning inline functions to variables.
+
+```javascript
+const greet = function () {
+  console.log('Hello!');
+};
+```
+
+For better debugging or reusable logic, named functions are preferred.
+
+[MDN Web Docs: Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+
+<GithubEdit link='/questions/javascript/16-what-is-a-typical-use-case-for-anonymous-functions-in-javascript/page.mdx' />

@@ -1,0 +1,65 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is the definition of a higher-order function in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What is the definition of a higher-order function in JavaScript?
+
+## Answer
+
+A higher-order function in JavaScript is a function that either:
+
+1. Takes one or more functions as arguments (callbacks), or
+2. Returns a function as its result.
+
+Higher-order functions allow for more dynamic and reusable code by enabling functional programming patterns.
+
+### Examples of Higher-Order Functions
+
+- **Taking a Function as an Argument**:
+
+```javascript
+Skopiuj kod
+function repeatOperation(operation, times) {
+  for (let i = 0; i < times; i++) {
+    operation();
+  }
+}
+
+repeatOperation(() => console.log("Hello"), 3);
+// Output: Hello (3 times)
+```
+
+- **Returning a Function**:
+
+```javascript
+Skopiuj kod
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+console.log(double(5)); // 10
+```
+
+- **Built-in Higher-Order Functions: JavaScript includes several built-in higher-order functions like `map`, `filter`, and `reduce`**.
+
+```javascript
+const numbers = [1, 2, 3];
+const doubled = numbers.map((num) => num * 2);
+console.log(doubled); // [2, 4, 6]
+```
+
+### Why Use Higher-Order Functions?
+
+- `Reusability`: Abstracts common patterns (e.g., iteration or transformations).
+- `Composability`: Facilitates chaining and functional-style programming.
+- `Cleaner Code`: Reduces boilerplate and makes code more declarative.
+
+[MDN Web Docs: Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+
+<GithubEdit link='/questions/javascript/19-what-is-the-definition-of-a-higher-order-function-in-javascript/page.mdx' />

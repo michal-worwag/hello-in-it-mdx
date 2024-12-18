@@ -1,0 +1,164 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are Symbols used for in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What are Symbols used for in JavaScript?
+
+## Answer
+
+### What Are Symbols in JavaScript?
+
+A Symbol is a primitive data type introduced in ES6 (ECMAScript 2015). It represents a unique and immutable value that can be used as a property key for objects.
+
+Symbols are primarily used to avoid property name collisions in objects, especially in scenarios where multiple libraries or parts of an application might interact.
+
+### Why Use Symbols?
+
+1. **Uniqueness**: Each Symbol is guaranteed to be unique, even if they have the same description.
+2. **Avoid Property Collisions**: Symbols are ideal for creating object properties that are private or intended to avoid conflicts with other code.
+3. **Special Metadata**: Symbols can be used as metadata keys, allowing you to add hidden or special properties to objects.
+
+### Creating a Symbol
+
+You can create a Symbol using the `Symbol()` function.
+
+**Example**:
+
+```javascript
+const symbol1 = Symbol('description');
+const symbol2 = Symbol('description');
+
+console.log(symbol1 === symbol2); // false (unique Symbols)
+```
+
+The optional string description is for debugging purposes and does not affect the Symbol's uniqueness.
+
+### Using Symbols as Object Property Keys
+
+Symbols are often used as unique property keys for objects.
+
+**Example**:
+
+```javascript
+const uniqueKey = Symbol('uniqueProperty');
+
+let obj = {
+  [uniqueKey]: 'This is a unique property',
+};
+
+console.log(obj[uniqueKey]); // "This is a unique property"
+console.log(Object.keys(obj)); // [] (Symbol keys are not enumerable)
+```
+
+Symbol keys do not appear in `Object.keys()` or `for...in` loops, making them effectively hidden unless explicitly accessed.
+
+### Shared Symbols with `Symbol.for`
+
+While `Symbol()` creates a unique Symbol, `Symbol.for(key)` creates a shared Symbol in the global Symbol registry. This allows different parts of an application to share the same Symbol.
+
+**Example**:
+
+```javascript
+const sharedSymbol1 = Symbol.for('shared');
+const sharedSymbol2 = Symbol.for('shared');
+
+console.log(sharedSymbol1 === sharedSymbol2); // true
+```
+
+Use `Symbol.keyFor()` to retrieve the key of a shared Symbol:
+
+```javascript
+console.log(Symbol.keyFor(sharedSymbol1)); // "shared"
+```
+
+### Well-Known Symbols
+
+JavaScript defines several built-in Symbols, known as well-known Symbols, that provide hooks into the language's internal behaviors. These are used to customize object behavior.
+
+**Examples of Well-Known Symbols**:
+
+- `Symbol.iterator` - Defines the default iterator for an object (used in `for...of` loops).
+- `Symbol.toStringTag` - Customizes the `toString()` output of an object.
+- `Symbol.hasInstance` - Customizes behavior of the `instanceof` operator.
+- `Symbol.toPrimitive` - Defines how an object is converted to a primitive value.
+
+**Example: Using `Symbol.iterator`**:
+
+```javascript
+let iterable = {
+  [Symbol.iterator]() {
+    let count = 0;
+    return {
+      next() {
+        count++;
+        return count <= 5
+          ? { value: count, done: false }
+          : { value: undefined, done: true };
+      },
+    };
+  },
+};
+
+for (const num of iterable) {
+  console.log(num); // 1, 2, 3, 4, 5
+}
+```
+
+### Symbol Key Visibility
+
+Symbols are not included in:
+
+- `Object.keys()`
+- `Object.getOwnPropertyNames()`
+- `for...in` loops
+
+To access Symbol keys, use:
+
+- Object.getOwnPropertySymbols()
+- Reflect.ownKeys() (includes both string and Symbol keys)
+
+**Example**:
+
+```javascript
+const sym1 = Symbol('key1');
+const sym2 = Symbol('key2');
+
+let obj = {
+  [sym1]: 'value1',
+  [sym2]: 'value2',
+  normalKey: 'value3',
+};
+
+console.log(Object.keys(obj)); // ["normalKey"]
+console.log(Object.getOwnPropertySymbols(obj)); // [Symbol(key1), Symbol(key2)]
+```
+
+### Practical Use Cases of Symbols
+
+1. Avoiding Property Collisions
+
+   In large applications or when working with libraries, Symbols help avoid unintended property overwrites.
+
+```javascript
+const uniqueKey = Symbol('id');
+obj[uniqueKey] = 12345; // Does not interfere with other "id" properties
+```
+
+2. Customizing Object Behavior
+
+   Symbols allow you to hook into JavaScript internals (e.g., `Symbol.iterator` for custom iteration).
+
+3. Creating Hidden or Private Properties
+
+   Symbol keys are not exposed in normal enumeration methods, making them useful for "hidden" properties.
+
+4. Tagging Objects
+
+   Use Symbols to tag or uniquely identify objects without affecting their normal behavior.
+
+[MDN Web Docs: Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
+<GithubEdit link='/questions/javascript/14-explain-the-differences-between-commonjs-modules-and-es-modules-in-javascript/page.mdx' />

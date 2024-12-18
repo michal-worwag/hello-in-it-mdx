@@ -1,0 +1,64 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are the various ways to create objects in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+};
+
+# What are the various ways to create objects in JavaScript?
+
+## Answer
+
+Objects in JavaScript can be created in several ways:
+
+1. Object Literals:
+
+```javascript
+const obj = { key: 'value' };
+```
+
+2. Object.create():
+
+```javascript
+const obj = Object.create(proto);
+```
+
+3. Constructor Functions:
+
+```javascript
+function Obj() {
+  this.key = 'value';
+}
+const obj = new Obj();
+```
+
+4. ES6 Classes:
+
+```javascript
+class Obj {
+  constructor() {
+    this.key = 'value';
+  }
+}
+const obj = new Obj();
+```
+
+5. Using new Object():
+
+```javascript
+const obj = new Object();
+obj.key = 'value';
+```
+
+6. Factory Functions:
+
+```javascript
+function createObj() {
+  return { key: 'value' };
+}
+const obj = createObj();
+```
+
+[MDN Web Docs: Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects)
+
+<GithubEdit link='/questions/javascript/17-what-are-the-various-ways-to-create-objects-in-javascript/page.mdx' />
