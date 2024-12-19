@@ -1,0 +1,27 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'How do you create a CSS Grid layout?',
+  alternates: {
+    canonical: '/questions/css/01-css-grid-layout/',
+  },
+};
+
+# How do you create a CSS Grid layout?
+
+## Answer
+
+CSS Grid allows for 2D layout control (rows and columns). Use `display: grid;`.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+```
+
+[CSS Grid Layout - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+[CSS Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+<GithubEdit link='/questions/css/01-css-grid-layout/page.mdx' />

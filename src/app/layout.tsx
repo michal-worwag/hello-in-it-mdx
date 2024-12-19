@@ -11,6 +11,7 @@ const fira = Fira_Code({
 
 export const metadata: Metadata = {
   title: 'HelloIn.IT - IT recruiting questions',
+  metadataBase: new URL('https://helloin.it'),
 };
 
 export default function RootLayout({
