@@ -1,0 +1,29 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the difference between relative, absolute, fixed, and sticky positioning in CSS?',
+  alternates: {
+    canonical: '/questions/css/02-css-positioning-differences/',
+  },
+};
+
+# What is the difference between relative, absolute, fixed, and sticky positioning in CSS?
+
+## Answer
+
+- `Relative`: Positions an element relative to its normal static position.
+- `Absolute`: Positions an element relative to its closest positioned ancestor or the document if none exist.
+- `Fixed`: Positions an element relative to the viewport, making it stay in place during scrolling.
+- `Sticky`: Combines relative and fixed; it switches between relative and fixed based on the scroll position.
+
+```css
+div {
+  position: relative; /* Try changing to absolute, fixed, or sticky */
+  top: 10px;
+}
+```
+
+[Learn more about CSS positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position).
+
+<GithubEdit link='/questions/css/02-css-positioning-differences/page.mdx' />

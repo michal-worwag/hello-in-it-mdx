@@ -1,0 +1,40 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain the concept of Union and Intersection types',
+  publishDate: '2024-12-08T18:35:00Z',
+  alternates: {
+    canonical: '/questions/typescript/05-typescript-union-intersection-types/',
+  },
+};
+
+# Explain the concept of Union and Intersection types
+
+## Answer
+
+- Union (`|`): Represents values that can be one of several types.
+- Intersection (`&`): Combines multiple types into one.
+
+```
+// Union
+let id: string | number;
+id = "abc"; // Valid
+id = 123;   // Valid
+
+// Intersection
+interface User {
+  name: string;
+}
+
+interface Admin {
+  admin: boolean;
+}
+
+type AdminUser = User & Admin;
+
+const admin: AdminUser = { name: "John", admin: true };
+```
+
+[Read more about TypeScript union and intersection types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+
+<GithubEdit link='/questions/typescript/05-typescript-union-intersection-types/page.mdx' />

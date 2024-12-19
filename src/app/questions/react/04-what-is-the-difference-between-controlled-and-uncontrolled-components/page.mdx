@@ -1,0 +1,39 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the difference between controlled and uncontrolled components?',
+  publishDate: '2024-12-06T18:30:00Z',
+  alternates: {
+    canonical:
+      '/questions/react/04-what-is-the-difference-between-controlled-and-uncontrolled-components/',
+  },
+};
+
+# What is the difference between controlled and uncontrolled components?
+
+## Answer
+
+**1. Controlled Components:**
+
+- React manages the state of the form element.
+- The value of the input is set via state, and changes are handled with an onChange handler.
+
+```
+const [value, setValue] = useState("");
+return <input value={value} onChange={(e) => setValue(e.target.value)} />;
+```
+
+**2. Uncontrolled Components:**
+
+- The DOM directly manages the state of the form element.
+- Access the value using a ref.
+
+```
+const inputRef = useRef(null);
+return <input ref={inputRef} />;
+```
+
+[Read more about controlled and uncontrolled components](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components)
+
+<GithubEdit link='/questions/react/04-what-is-the-difference-between-controlled-and-uncontrolled-components/page.mdx' />

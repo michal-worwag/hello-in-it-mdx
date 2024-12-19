@@ -1,0 +1,41 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'How does TypeScript handle enums?',
+  publishDate: '2024-12-08T18:33:00Z',
+  alternates: {
+    canonical: '/questions/typescript/02-typescript-enums/',
+  },
+};
+
+# How does TypeScript handle enums?
+
+## Answer
+
+Enums in TypeScript provide a way to define a set of named constants, either numeric or string-based.
+
+```
+enum Direction {
+  Up = 1,
+  Down,
+  Left,
+  Right,
+}
+
+console.log(Direction.Up); // 1
+console.log(Direction[2]); // Down
+
+enum Color {
+  Red = "RED",
+  Green = "GREEN",
+  Blue = "BLUE",
+}
+
+console.log(Color.Red); // "RED"
+```
+
+[Read more about TypeScript enums](https://www.typescriptlang.org/docs/handbook/enums.html)
+
+[TypeScript enums vs. types: Enhancing code readability](https://blog.logrocket.com/typescript-enums-vs-types/)
+
+<GithubEdit link='/questions/typescript/02-typescript-enums/page.mdx' />
