@@ -37,10 +37,6 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [27-Explain AJAX in as much detail as possible](https://helloin.it/questions/javascript/27-explain-ajax-in-as-much-detail-as-possible)
 - [28-What are the advantages and disadvantages of using AJAX?](https://helloin.it/questions/javascript/28-what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers)
 
-- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
-- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
-- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
-
 ### 2. [React Questions](https://helloin.it/questions/react/)
 
 - [01-Explain the purpose of the useEffect hook in React](https://helloin.it/questions/react/01-explain-the-purpose-of-the-useeffect-hook-in-react)
