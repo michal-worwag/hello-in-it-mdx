@@ -1,0 +1,91 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Describe event bubbling in JavaScript and browsers',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/21-describe-event-bubbling-in-javascript-and-browsers',
+  },
+};
+
+# Describe event bubbling in JavaScript and browsers
+
+## Answer
+
+**Event bubbling** in JavaScript is a mechanism where an event propagates from the target element (the element that triggered the event) upward through its ancestors in the DOM hierarchy until it reaches the root (`<html>` or `document`).
+
+### How Event Bubbling Works
+
+1. When an event occurs on an element (e.g., a `click`), the browser first processes the event on that element.
+2. Then, the event propagates up the DOM tree, triggering the same event type on each ancestor element in order.
+
+**Example**:
+
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+<script>
+  document.getElementById('parent').addEventListener('click', () => {
+    console.log('Parent clicked!');
+  });
+  document.getElementById('child').addEventListener('click', () => {
+    console.log('Child clicked!');
+  });
+</script>
+```
+
+**Output on Button Click**:
+
+```
+Child clicked!
+Parent clicked!
+```
+
+- The `click` event occurs on the button and then "bubbles" to the parent `<div>`.
+
+### Use Cases for Event Bubbling
+
+1. Event Delegation:
+
+- Attach a single event listener to a parent element to handle events for its children.
+- Useful for dynamically added elements.
+
+```javascript
+document.getElementById('parent').addEventListener('click', (event) => {
+  if (event.target.tagName === 'BUTTON') {
+    console.log('Button clicked!');
+  }
+});
+```
+
+2. Handling Multiple Elements:
+
+- Simplifies code when managing similar behavior across many elements.
+
+### Stopping Event Bubbling
+
+Use `event.stopPropagation()` to prevent the event from propagating to ancestor elements.
+
+```javascript
+Skopiuj kod
+document.getElementById("child").addEventListener("click", (event) => {
+event.stopPropagation();
+console.log("Child clicked! Bubbling stopped.");
+});
+```
+
+### Event Bubbling vs. Capturing
+
+- Event Bubbling: Propagation from target to ancestors (default behavior).
+- Event Capturing: Propagation from ancestors to the target (controlled by setting `useCapture` = `true` in the event listener).
+
+```javascript
+element.addEventListener('click', handler, true); // Capturing phase
+element.addEventListener('click', handler, false); // Bubbling phase (default)
+```
+
+[MDN Web Docs: Event Bubbling and Capturing](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#bubbling_and_capturing)
+
+<GithubEdit link='/questions/javascript/21-describe-event-bubbling-in-javascript-and-browsers/page.mdx' />

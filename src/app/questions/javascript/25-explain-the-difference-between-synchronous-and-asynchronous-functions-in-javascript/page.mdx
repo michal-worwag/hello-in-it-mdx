@@ -1,0 +1,94 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'Explain the difference between synchronous and asynchronous functions in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/25-explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript',
+  },
+};
+
+# Explain the difference between synchronous and asynchronous functions in JavaScript
+
+## Answer
+
+JavaScript functions can operate in either **synchronous** or **asynchronous** modes, depending on how they execute and handle tasks.
+
+---
+
+### **Synchronous Functions**
+
+**Definition**
+Synchronous functions execute **one at a time**, in the order they appear. The program waits for a function to complete before moving to the next one.
+
+**Characteristics**
+
+- Blocking: Each operation blocks the execution of subsequent code until it finishes.
+- Easier to write and debug for simple tasks.
+
+**Example**
+
+```javascript
+console.log('Start');
+console.log('Middle');
+console.log('End');
+```
+
+**Output**:
+
+```
+Start
+Middle
+End
+```
+
+In the above example, each `console.log` runs sequentially.
+
+---
+
+### **Asynchronous Functions**
+
+**Definition**
+Asynchronous functions allow tasks to run **independently** of the main thread. The program does not wait for the task to complete and continues execution.
+
+**Characteristics**
+
+- Non-blocking: Allows other operations to run while waiting for the task to complete.
+- Typically used for I/O operations, network requests, or timers.
+- Commonly implemented using callbacks, Promises, or `async/await`.
+
+  **Example**
+
+```javascript
+console.log('Start');
+setTimeout(() => {
+  console.log('Middle');
+}, 1000);
+console.log('End');
+```
+
+**Output**:
+
+```
+Start
+End
+Middle
+```
+
+Here, the `setTimeout` function executes asynchronously, allowing the program to continue running without waiting for the timer to finish.
+
+### **When to Use**
+
+**Synchronous Functions**
+
+- For simple, predictable operations like mathematical calculations or string manipulations.
+
+**Asynchronous Functions**
+
+- For operations involving delays, like fetching data from a server, reading files, or timers.
+
+[MDN Web Docs: Synchronous vs Asynchronous](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts)
+
+<GithubEdit link='/questions/javascript/25-explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript/page.mdx' />

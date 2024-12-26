@@ -1,0 +1,97 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What is "use strict" in JavaScript for?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical: '/questions/javascript/24-what-is-use-strict-in-javascript-for',
+  },
+};
+
+# What is 'use strict' in JavaScript for?
+
+## Answer
+
+`"use strict"` is a directive in JavaScript that enables **strict mode**, a stricter set of rules for writing JavaScript code. It helps catch potential bugs, enforces safer coding practices, and improves performance in some cases.
+
+---
+
+## **How to Use "use strict"**
+
+### **Globally**
+
+Placed at the top of a script file, it applies strict mode to the entire file.
+
+```javascript
+'use strict';
+x = 10; // Error: x is not defined
+```
+
+### **Function Scope**
+
+Placed at the beginning of a function, it applies strict mode only within that function.
+
+```javascript
+function myFunction() {
+  'use strict';
+  y = 20; // Error: y is not defined
+}
+myFunction();
+```
+
+---
+
+### **Key Features and Benefits of Strict Mode**
+
+1. **Prevents the Use of Undeclared Variables**
+
+```javascript
+'use strict';
+a = 10; // Error: a is not defined
+```
+
+2. **Disallows Duplicating Parameter Names**
+
+```javascript
+'use strict';
+function example(a, a) {} // Error: Duplicate parameter name
+```
+
+3. **Eliminates Silent Errors**
+
+Some operations that fail silently in non-strict mode throw errors in strict mode.
+
+```javascript
+'use strict';
+delete Object.prototype; // Error: Cannot delete property
+```
+
+4. **Prevents `this` from Defaulting to `window`**
+
+In functions, `this` defaults to `undefined` instead of the global object.
+
+```javascript
+'use strict';
+function example() {
+  console.log(this); // undefined
+}
+example();
+```
+
+5. **Makes Code Easier to Optimize**
+
+Some optimizations are easier for JavaScript engines to perform in strict mode.
+
+6. **Reserved Keywords for Future**
+
+Disallows the use of keywords like `implements`, `interface`, and `private`, ensuring compatibility with future JavaScript versions.
+
+### **When to Use "use strict"**
+
+- When you want cleaner, more predictable code.
+- When debugging or developing large applications to catch potential issues early.
+- As a good practice in modern JavaScript development.
+
+[MDN Web Docs: Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+
+<GithubEdit link='/questions/javascript/24-what-is-use-strict-in-javascript-for/page.mdx' />

@@ -1,0 +1,170 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What are the differences between XMLHttpRequest and fetch() in JavaScript and browsers?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/28-what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers',
+  },
+};
+
+# What are the differences between XMLHttpRequest and fetch() in JavaScript and browsers?
+
+## Answer
+
+`XMLHttpRequest` and `fetch()` are both used to make HTTP requests in JavaScript, but they have several key differences:
+
+### 1. API Simplicity and Syntax:
+
+- **XMLHttpRequest (XHR)**:
+  - It has a more complex, callback-based syntax.
+  - Requires handling different states of the request, such as `onreadystatechange`, `readyState`, and `status` codes.
+
+Example:
+
+```javascript
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/example', true);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    console.log(xhr.responseText);
+  }
+};
+xhr.send();
+```
+
+- **Fetch**:
+  - The `fetch()` API is more modern and based on Promises, leading to cleaner and more readable code, especially with `async`/`await`.
+
+Example:
+
+```javascript
+fetch('/example')
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
+```
+
+### 2. Promise-Based vs Callback-Based:
+
+- **XMLHttpRequest**:
+  - Uses a callback pattern, which can lead to "callback hell" when making multiple asynchronous requests.
+- **Fetch**:
+  - Fetch uses Promises, making it easier to chain requests and handle asynchronous logic in a more structured way.
+
+### 3. Handling of Response Types:
+
+- **XMLHttpRequest**:
+  - Response types need to be manually checked and handled (e.g., `xhr.responseText` for text, `xhr.responseXML` for XML, etc.).
+- **Fetch**:
+  - The response object provides methods like `.json()`, `.text()`, `.blob()`, etc., to automatically parse the response data.
+
+Example:
+
+```javascript
+Skopiuj kod
+fetch('/example')
+.then(response => response.json())
+.then(data => console.log(data));
+```
+
+### 4. CORS Handling:
+
+- **XMLHttpRequest**:
+  - Requires setting up CORS headers on the server for cross-origin requests. It might be more cumbersome to work with cross-origin resource sharing (CORS) issues.
+- **Fetch**:
+  - By default, `fetch()` includes CORS support and allows easier handling of requests with different credentials. You can configure the request mode to handle CORS more intuitively (e.g., `fetch(url, { mode: 'cors' })`).
+
+### 5. Error Handling:
+
+- **XMLHttpRequest**:
+  - Error handling is more difficult, requiring you to manually check the status and readyState codes and handle failed requests.
+
+Example:
+
+```javascript
+xhr.onerror = function () {
+  console.log('Error occurred');
+};
+```
+
+- **Fetch**:
+  - Fetch will only reject a promise on network failure or if something prevents the request from completing. It does not reject on HTTP errors (e.g., 404 or 500). To handle HTTP errors, you need to check the response status manually.
+    Example:
+
+```javascript
+fetch('/example')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .catch((error) => console.error('Fetch error:', error));
+```
+
+### 6. Support for Streaming:
+
+- **XMLHttpRequest**:
+  - Does not natively support streams or progressive downloading.
+- **Fetch**:
+  - Supports reading streams, which can be useful for large responses (e.g., downloading a file in chunks).
+    Example:
+
+```javascript
+fetch('/largefile').then((response) => {
+  const reader = response.body.getReader();
+  // Handle the streaming data
+});
+```
+
+### 7. Timeouts:
+
+- **XMLHttpRequest**:
+  - Allows setting a timeout on the request via `xhr.timeout`.
+- **Fetch**:
+  - Fetch does not support request timeouts out of the box. You have to implement your own timeout handling using `AbortController`.
+
+Example:
+
+```javascript
+const controller = new AbortController();
+const signal = controller.signal;
+
+fetch('/example', { signal })
+  .then((response) => response.json())
+  .catch((err) => {
+    if (err.name === 'AbortError') {
+      console.log('Request timed out');
+    }
+  });
+
+setTimeout(() => controller.abort(), 5000); // Abort after 5 seconds
+```
+
+### 8. Browser Compatibility:
+
+- **XMLHttpRequest**:
+  - It is widely supported across all browsers, including very old versions of Internet Explorer (e.g., IE6+).
+- **Fetch**:
+  - `fetch()` is supported in modern browsers but not in Internet Explorer. Polyfills or alternatives like `axios` may be required for compatibility with older browsers.
+
+### 9. Request Cancellation:
+
+- **XMLHttpRequest**:
+  - Does not have built-in support for cancellation, although it can be aborted manually with xhr.abort().
+- **Fetch**:
+  - Fetch supports cancellation using AbortController.
+
+### Conclusion:
+
+- XMLHttpRequest is an older, callback-based API that works with a variety of response types but is more cumbersome to work with.
+- Fetch is a more modern, Promise-based API that simplifies asynchronous code, provides better handling of responses, and supports features like streaming and cancellation. However, it doesn't handle some edge cases (e.g., HTTP errors, timeouts) as easily and is not supported in older browsers (like IE).
+
+[MDN Web Docs on XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+
+[MDN Web Docs on Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+<GithubEdit link='/questions/javascript/28-what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers/page.mdx' />

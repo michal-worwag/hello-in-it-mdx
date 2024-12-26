@@ -1,0 +1,111 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What are the pros and cons of using Promises instead of callbacks in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/26-what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript',
+  },
+};
+
+# What are the pros and cons of using Promises instead of callbacks in JavaScript?
+
+## Answer
+
+### 1. **Improved Readability**
+
+- Promises avoid "callback hell" by chaining `.then()` and `.catch()` instead of deeply nested callback functions.
+- Example:
+
+  ```javascript
+  // Using Promises
+  fetchData()
+    .then((data) => process(data))
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+
+  // Using Callbacks
+  fetchData((error, data) => {
+    if (error) {
+      console.error(error);
+    } else {
+      process(data, (error, result) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log(result);
+        }
+      });
+    }
+  });
+  ```
+
+### 2. **Built-in Error Handling**
+
+- Promises propagate errors automatically through the `.catch()` method, simplifying error handling.
+
+### 3. **Chaining**
+
+- Promises allow sequential execution of asynchronous operations with `.then()` chaining, making the flow easier to follow.
+
+### 4. **Composability**
+
+- Promises can be combined using `Promise.all()`, `Promise.race()`, and other utilities for handling multiple asynchronous operations efficiently.
+  ```javascript
+  Promise.all([fetchData(), fetchUser(), fetchSettings()])
+    .then(([data, user, settings]) => {
+      console.log(data, user, settings);
+    })
+    .catch((error) => console.error(error));
+  ```
+
+### 5. **Integration with Modern Features**
+
+- Promises work seamlessly with `async/await`, making asynchronous code even more readable and synchronous-looking.
+
+---
+
+### **Cons of Using Promises**
+
+1.  **Complexity for Simple Tasks**
+
+- For very simple asynchronous operations, Promises can add unnecessary complexity compared to a straightforward callback.
+
+  ```javascript
+  // Callback
+  setTimeout(() => console.log('Done!'), 1000);
+
+  // Promise
+  new Promise((resolve) => setTimeout(resolve, 1000)).then(() =>
+    console.log('Done!')
+  );
+  ```
+
+2.  **Increased Learning Curve**
+
+- Promises require understanding of chaining, error propagation, and utilities like `Promise.all()`.
+
+3.  **Potential for Silent Failures**
+
+- If a `.catch()` or error handler is not attached, errors might silently fail or remain unhandled.
+
+4.  **Backward Compatibility Issues**
+
+- Older JavaScript codebases using callbacks may require refactoring to adopt Promises.
+
+### **When to Use Promises**
+
+- When dealing with complex asynchronous operations requiring multiple steps or error handling.
+- When chaining or composability is essential.
+- When integrating with modern JavaScript (`async/await`).
+
+### **When to Use Callbacks**
+
+- For simple, one-off asynchronous tasks.
+- In performance-critical code where Promises might introduce slight overhead.
+
+[MDN Web Docs: Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+<GithubEdit link='/questions/javascript/26-what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript/page.mdx' />
