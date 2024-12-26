@@ -28,6 +28,18 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [18-What is a closure in JavaScript, and how/why would you use one?](https://helloin.it/questions/javascript/18-what-is-a-closure-in-javascript-and-how-why-would-you-use-one)
 - [19-What is the definition of a higher-order function in JavaScript?](https://helloin.it/questions/javascript/19-what-is-the-definition-of-a-higher-order-function-in-javascript)
 - [20-What is the difference between .call and .apply in JavaScript?](https://helloin.it/questions/javascript/20-what-is-the-difference-between-call-and-apply-in-javascript)
+- [21-Describe event bubbling in JavaScript and browsers](https://helloin.it/questions/javascript/21-describe-event-bubbling-in-javascript-and-browsers)
+- [22-Describe event capturing in JavaScript and browsers](https://helloin.it/questions/javascript/22-describe-event-capturing-in-javascript-and-browsers)
+- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
+- [24-What is "use strict" in JavaScript for?](https://helloin.it/questions/javascript/24-what-is-use-strict-in-javascript-for)
+- [25-Explain the difference between synchronous and asynchronous functions in JavaScript](https://helloin.it/questions/javascript/25-explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript)
+- [26-What are the pros and cons of using Promises instead of callbacks in JavaScript?](https://helloin.it/questions/javascript/26-what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)
+- [27-Explain AJAX in as much detail as possible](https://helloin.it/questions/javascript/27-explain-ajax-in-as-much-detail-as-possible)
+- [28-What are the advantages and disadvantages of using AJAX?](https://helloin.it/questions/javascript/28-what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers)
+
+- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
+- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
+- [23-What is the difference between mouseenter and mouseover event in JavaScript and browsers?](https://helloin.it/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 

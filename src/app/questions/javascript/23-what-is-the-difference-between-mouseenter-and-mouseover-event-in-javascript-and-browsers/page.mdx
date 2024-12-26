@@ -1,0 +1,87 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the difference between mouseenter and mouseover event in JavaScript and browsers?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers',
+  },
+};
+
+# What is the difference between mouseenter and mouseover event in JavaScript and browsers?
+
+## Answer
+
+The difference between the `mouseenter` and `mouseover` events in JavaScript lies in how they handle event propagation and triggering when interacting with child elements:
+
+### 1. `mouseover` Event
+
+    - Triggered when the mouse pointer enters the bound element or any of its child elements.
+    - Bubbles: Yes, propagates up through the DOM hierarchy.
+
+**Example**:
+
+```javascript
+document.getElementById('parent').addEventListener('mouseover', () => {
+  console.log('Mouse over parent!');
+});
+```
+
+**Behavior**: If the mouse moves over child elements inside `parent`, the event is still triggered for `parent`.
+
+### 2. `mouseenter` Event
+
+    - Triggered only when the mouse pointer enters the bound element itself, not its child elements.
+    - Does not bubble: This event does not propagate up through the DOM hierarchy.
+
+**Example**:
+
+```javascript
+document.getElementById('parent').addEventListener('mouseenter', () => {
+  console.log('Mouse entered parent!');
+});
+```
+
+**Behavior**: If the mouse moves over child elements inside parent, the event is not triggered again for parent.
+
+### Practical Use Cases
+
+1.  `mouseover`:
+
+        - Useful for interactions involving both the element and its child elements.
+            Example: Highlight a menu when hovering over it or its sub-items.
+
+2.  `mouseenter`:
+
+        - Useful for handling hover logic only for the specific element itself.
+            Example: Display a tooltip when hovering over an element but not its children.
+
+### Example Comparing Behavior
+
+```html
+Skopiuj kod
+
+<div id="parent" style="padding: 20px; background: lightblue;">
+  Parent
+  <div id="child" style="margin: 10px; background: lightcoral;">Child</div>
+</div>
+<script>
+  document.getElementById('parent').addEventListener('mouseover', () => {
+    console.log('Mouse over parent!');
+  });
+
+  document.getElementById('parent').addEventListener('mouseenter', () => {
+    console.log('Mouse entered parent!');
+  });
+</script>
+```
+
+- Hovering over the child triggers the mouseover for parent but not the mouseenter.
+
+[MDN Web Docs: mouseover](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event)
+
+[MDN Web Docs: mouseenter](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event)
+
+<GithubEdit link='/questions/javascript/23-what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers/page.mdx' />

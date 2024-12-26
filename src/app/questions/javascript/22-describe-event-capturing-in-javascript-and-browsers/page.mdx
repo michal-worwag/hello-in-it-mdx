@@ -1,0 +1,88 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Describe event capturing in JavaScript and browsers',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/22-describe-event-capturing-in-javascript-and-browsers',
+  },
+};
+
+# Describe event capturing in JavaScript and browsers
+
+## Answer
+
+**Event capturing** (also known as "capture phase") in JavaScript is a mechanism where an event propagates from the root of the DOM (e.g., `document`) downward through its ancestors to the target element before the target processes the event.
+
+### How Event Capturing Works
+
+1. When an event occurs, it first propagates from the outermost ancestor (e.g., document) down the DOM tree towards the target element.
+2. Each ancestor element along the way can listen to the event in the capture phase before it reaches the target.
+
+**Example of Event Capturing**
+
+```html
+<div id="grandparent">
+  <div id="parent">
+    <button id="child">Click Me</button>
+  </div>
+</div>
+<script>
+  document.getElementById('grandparent').addEventListener(
+    'click',
+    () => {
+      console.log('Grandparent capturing!');
+    },
+    true // Enable capturing phase
+  );
+
+  document.getElementById('parent').addEventListener(
+    'click',
+    () => {
+      console.log('Parent capturing!');
+    },
+    true // Enable capturing phase
+  );
+
+  document.getElementById('child').addEventListener('click', () => {
+    console.log('Child clicked!');
+  });
+</script>
+```
+
+**Output on Button Click**:
+
+```
+Grandparent capturing!
+Parent capturing!
+Child clicked!
+```
+
+- The event starts at the grandparent in the capture phase, then moves to parent, and finally reaches the child (target phase).
+
+### Enabling Event Capturing
+
+By default, event listeners use the bubbling phase. To listen during the capture phase, set the third parameter of `addEventListener` to `true`.
+
+```javascript
+element.addEventListener('event', callback, true);
+```
+
+### Use Cases for Event Capturing
+
+1. Specialized Event Handling:
+
+   - Useful when you need to handle events before they reach the target.
+
+2. Overriding Event Behavior:
+
+   - Allows handling events at an earlier stage, such as preventing default actions or stopping propagation.
+
+3. Complex Hierarchical DOM:
+
+   - Ensures certain elements get the event first, regardless of bubbling behavior.
+
+[MDN Web Docs: Event Bubbling and Capturing](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#bubbling_and_capturing)
+
+<GithubEdit link='/questions/javascript/22-describe-event-capturing-in-javascript-and-browsers/page.mdx' />
