@@ -1,0 +1,124 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'How do you abort a web request using AbortController in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/29-how-do-you-abort-a-web-request-using-abortcontroller-in-javascript',
+  },
+};
+
+# How do you abort a web request using AbortController in JavaScript?
+
+The **`AbortController`** API in JavaScript provides a way to abort web requests, such as `fetch` or other asynchronous tasks, when they are no longer needed. This is particularly useful for scenarios like canceling requests when navigating away from a page or stopping redundant API calls.
+
+---
+
+## **Basic Syntax of AbortController**
+
+The `AbortController` API works by creating a controller object that can send a signal to abort associated requests.
+
+### **Steps to Use AbortController**
+
+1. Create an instance of `AbortController`.
+2. Pass the controller's `signal` property to the `fetch` or other request function.
+3. Call `abort()` on the controller to cancel the request.
+
+---
+
+## **Example: Using AbortController with Fetch**
+
+```javascript
+// Create an instance of AbortController
+const controller = new AbortController();
+const signal = controller.signal;
+
+// Start a fetch request with the signal
+fetch('https://api.example.com/data', { signal })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log('Fetched data:', data);
+  })
+  .catch((error) => {
+    if (error.name === 'AbortError') {
+      console.log('Fetch request was aborted.');
+    } else {
+      console.error('Fetch error:', error);
+    }
+  });
+
+// Abort the fetch request after 2 seconds
+setTimeout(() => {
+  controller.abort();
+  console.log('Request aborted');
+}, 2000);
+```
+
+### **Output**
+
+- If the request completes within 2 seconds, the data is logged.
+- If it exceeds 2 seconds, the request is aborted, and the `AbortError` is handled.
+
+---
+
+## **Advanced Example: Aborting Multiple Requests**
+
+The same `AbortController` instance can be used to manage multiple requests simultaneously.
+
+```javascript
+const controller = new AbortController();
+const signal = controller.signal;
+
+// Start multiple fetch requests
+Promise.all([
+  fetch('https://api.example.com/data1', { signal }),
+  fetch('https://api.example.com/data2', { signal }),
+])
+  .then((responses) => Promise.all(responses.map((res) => res.json())))
+  .then((data) => {
+    console.log('Fetched data:', data);
+  })
+  .catch((error) => {
+    if (error.name === 'AbortError') {
+      console.log('One or more requests were aborted.');
+    } else {
+      console.error('Fetch error:', error);
+    }
+  });
+
+// Abort all requests after 1 second
+setTimeout(() => {
+  controller.abort();
+  console.log('All requests aborted');
+}, 1000);
+```
+
+---
+
+## **Benefits of Using AbortController**
+
+1. **Resource Management**: Prevents unnecessary resource consumption for requests no longer needed.
+2. **Improved UX**: Enables canceling redundant or stale requests in real-time applications.
+3. **Error Handling**: Clearly distinguishes between aborted requests and other types of errors.
+
+---
+
+## **Limitations**
+
+1. **Limited Browser Support**: Older browsers may not support `AbortController`. Always check compatibility or use a polyfill.
+2. **Not Supported by All APIs**: While widely supported by `fetch`, not all web APIs are compatible with `AbortController`.
+
+---
+
+## **References**
+
+- [MDN Web Docs: AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
+- [MDN Web Docs: fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+<GithubEdit link='/questions/javascript/29-how-do-you-abort-a-web-request-using-abortcontroller-in-javascript/page.mdx' />

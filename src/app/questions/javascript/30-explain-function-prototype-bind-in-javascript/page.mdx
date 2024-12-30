@@ -1,0 +1,174 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain Function.prototype.bind in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/30-explain-function-prototype-bind-in-javascript',
+  },
+};
+
+# Explain Function.prototype.bind in JavaScript
+
+The `bind` method in JavaScript is a built-in function of `Function.prototype`. It creates a **new function** that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments pre-filled (partial application).
+
+---
+
+## **Syntax**
+
+```javascript
+function.bind(thisArg[, arg1[, arg2[, ...]]])
+```
+
+### **Parameters**
+
+1. **`thisArg`**:
+
+   - The value to set as `this` inside the bound function.
+   - If `null` or `undefined`, it defaults to the global object (`window` in browsers or `global` in Node.js).
+   - If the function is in strict mode, `this` will remain as `null` or `undefined`.
+
+2. **`arg1, arg2, ...`**:
+   - Optional arguments to prepend to the arguments provided when calling the bound function.
+
+### **Return Value**
+
+A new function with the specified `this` value and pre-filled arguments.
+
+---
+
+## **Basic Example**
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: 'Alice' };
+
+// Create a bound function
+const sayHello = greet.bind(person, 'Hello');
+
+// Call the bound function
+sayHello('!');
+```
+
+**Output**:
+
+```
+Hello, Alice!
+```
+
+Explanation:
+
+- `bind` sets `this` to the `person` object.
+- The first argument (`"Hello"`) is pre-filled.
+- When `sayHello` is called, only the remaining argument (`"!"`) is needed.
+
+---
+
+## **Use Cases**
+
+### 1. **Function Borrowing**
+
+```javascript
+const person = { name: 'Alice' };
+const logger = {
+  prefix: 'User',
+  log() {
+    console.log(`${this.prefix}: ${this.name}`);
+  },
+};
+
+const boundLog = logger.log.bind(person);
+boundLog();
+```
+
+**Output**:
+
+```
+User: Alice
+```
+
+### 2. **Fixing `this` in Callbacks**
+
+When passing methods as callbacks, `this` may get lost. Use `bind` to preserve the context.
+
+```javascript
+class Counter {
+  constructor() {
+    this.count = 0;
+  }
+
+  increment() {
+    this.count++;
+    console.log(this.count);
+  }
+}
+
+const counter = new Counter();
+const button = document.createElement('button');
+button.textContent = 'Click me';
+button.addEventListener('click', counter.increment.bind(counter));
+
+// Append the button to the document
+document.body.appendChild(button);
+```
+
+Without `bind`, `this` in `increment` would refer to the button element instead of the `Counter` instance.
+
+### 3. **Partial Application**
+
+`bind` can pre-fill arguments to create partially applied functions.
+
+```javascript
+function multiply(a, b) {
+  return a * b;
+}
+
+const double = multiply.bind(null, 2);
+console.log(double(5)); // Output: 10
+
+const triple = multiply.bind(null, 3);
+console.log(triple(5)); // Output: 15
+```
+
+---
+
+## **Important Notes**
+
+1. **Creates a New Function**:
+
+   - The function returned by `bind` is a new function and does not inherit from the original function's prototype.
+
+2. **Non-Overridable `this`**:
+
+   - The `this` value in a bound function cannot be overridden by methods like `call` or `apply`.
+
+   ```javascript
+   function example() {
+     console.log(this);
+   }
+
+   const boundExample = example.bind({ key: 'value' });
+   boundExample.call({ anotherKey: 'anotherValue' }); // Still { key: "value" }
+   ```
+
+3. **Arrow Functions and `bind`**:
+
+   - Arrow functions do not have their own `this` and cannot use `bind` to change it. The `this` is lexically bound.
+
+   ```javascript
+   const arrowFunc = () => console.log(this);
+   const boundFunc = arrowFunc.bind({ key: 'value' });
+   boundFunc(); // Still the original `this`
+   ```
+
+---
+
+## **References**
+
+- [MDN Web Docs: Function.prototype.bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+<GithubEdit link='/questions/javascript/30-explain-function-prototype-bind-in-javascript/page.mdx' />
