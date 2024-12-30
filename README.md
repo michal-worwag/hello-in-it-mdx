@@ -36,6 +36,11 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [26-What are the pros and cons of using Promises instead of callbacks in JavaScript?](https://helloin.it/questions/javascript/26-what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)
 - [27-Explain AJAX in as much detail as possible](https://helloin.it/questions/javascript/27-explain-ajax-in-as-much-detail-as-possible)
 - [28-What are the advantages and disadvantages of using AJAX?](https://helloin.it/questions/javascript/28-what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers)
+- [29-How do you abort a web request using AbortController in JavaScript?](https://helloin.it/questions/javascript/29-how-do-you-abort-a-web-request-using-abortcontroller-in-javascript)
+- [30-Explain Function.prototype.bind in JavaScript](https://helloin.it/questions/javascript/30-explain-function-prototype-bind-in-javascript)
+- [31-Why is extending built-in JavaScript objects not a good idea?](https://helloin.it/questions/javascript/31-why-is-extending-built-in-javascript-objects-not-a-good-idea)
+- [32-Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?](https://helloin.it/questions/javascript/32-why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)
+- [33-How does JavaScript garbage collection work?](https://helloin.it/questions/javascript/33-how-does-javascript-garbage-collection-work)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 

@@ -1,0 +1,140 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Why is extending built-in JavaScript objects not a good idea?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/31-why-is-extending-built-in-javascript-objects-not-a-good-idea',
+  },
+};
+
+# Why is extending built-in JavaScript objects not a good idea?
+
+Extending built-in JavaScript objects (e.g., `Array`, `Object`, `String`) by adding custom methods or properties may seem convenient, but it comes with several significant risks and downsides.
+
+---
+
+## **Reasons to Avoid Extending Built-in Objects**
+
+### 1. **Risk of Naming Collisions**
+
+Adding properties or methods to built-in objects can clash with future updates to the JavaScript language or third-party libraries. If the same name is used for a built-in method in a future specification, your code could break.
+
+```javascript
+Array.prototype.myCustomMethod = function () {
+  return 'Hello!';
+};
+
+// If future versions of JavaScript introduce `myCustomMethod`, this will cause conflicts.
+```
+
+### 2. **Affects Global Scope**
+
+Changes to built-in objects affect all instances globally, which can lead to unintended side effects in unrelated code or libraries.
+
+```javascript
+String.prototype.reverse = function () {
+  return this.split('').reverse().join('');
+};
+
+console.log('abc'.reverse()); // Works here
+
+// Another library may rely on `String.prototype.reverse` and now behave unexpectedly.
+```
+
+### 3. **Performance Overhead**
+
+Extending built-in objects can slow down JavaScript engines, as they need to handle additional properties on every instance of the object.
+
+### 4. **Violates the Principle of Least Astonishment**
+
+Developers expect built-in objects to behave in standard ways. Adding custom methods or properties can lead to confusion and bugs.
+
+```javascript
+Array.prototype.sum = function () {
+  return this.reduce((acc, curr) => acc + curr, 0);
+};
+
+const arr = [1, 2, 3];
+console.log(arr.sum()); // Works
+
+// Another developer may not expect this and assume `sum` is a built-in method.
+```
+
+### 5. **Harder to Maintain Code**
+
+Custom extensions make it harder for others (or even yourself) to understand and maintain the codebase. Developers unfamiliar with the extensions may struggle to debug issues.
+
+### 6. **Compatibility Issues**
+
+Third-party libraries may inadvertently rely on the original behavior of the built-in object, and your extensions can interfere with their functionality.
+
+---
+
+## **Recommended Alternatives**
+
+### 1. **Utility Functions**
+
+Instead of extending built-in objects, create standalone utility functions.
+
+```javascript
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+
+console.log(reverseString('abc')); // "cba"
+```
+
+### 2. **Subclasses**
+
+If you need to add functionality, create a custom class that extends the built-in object.
+
+```javascript
+class CustomArray extends Array {
+  sum() {
+    return this.reduce((acc, curr) => acc + curr, 0);
+  }
+}
+
+const arr = new CustomArray(1, 2, 3);
+console.log(arr.sum()); // 6
+```
+
+### 3. **Polyfills (with Caution)**
+
+If you must add a feature that is widely missing in older environments, use a polyfill, but only if the feature is standardized.
+
+```javascript
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function (element) {
+    return this.indexOf(element) !== -1;
+  };
+}
+```
+
+---
+
+## **When Extending Built-in Objects Might Be Acceptable**
+
+1. **Private Use in a Controlled Environment**:
+
+   - If you control the entire codebase and no external libraries are used.
+
+2. **Standardized Polyfills**:
+   - Adding features that conform to an official specification to support older environments.
+
+---
+
+## **Conclusion**
+
+While it is technically possible to extend built-in JavaScript objects, it is generally considered bad practice due to potential naming collisions, global scope impacts, and maintainability challenges. Instead, use utility functions, subclasses, or polyfills as safer alternatives.
+
+---
+
+## **References**
+
+- [MDN Web Docs: JavaScript Object Prototypes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+- [Why modifying native prototypes is a bad idea](https://dmitripavlutin.com/dont-modify-javascript-built-in-objects/)
+
+<GithubEdit link='/questions/javascript/31-why-is-extending-built-in-javascript-objects-not-a-good-idea/page.mdx' />
