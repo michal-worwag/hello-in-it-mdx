@@ -1,0 +1,134 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What are the differences between Map/Set and WeakMap/WeakSet in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/40-what-are-the-differences-between-map-set-and-weakmap-weakset-in-javascript',
+  },
+};
+
+# What are the differences between Map/Set and WeakMap/WeakSet in JavaScript?
+
+JavaScript provides collections for managing key-value pairs (`Map`, `WeakMap`) and unique values (`Set`, `WeakSet`). While `Map` and `Set` are general-purpose, `WeakMap` and `WeakSet` have specialized use cases with distinct features.
+
+---
+
+## **Map and Set**
+
+### **Definition**
+
+- `Map`: A collection of key-value pairs where keys can be of any data type.
+- `Set`: A collection of unique values.
+
+### **Features**
+
+1. **Strong References**: Keys and values remain in memory until explicitly removed.
+2. **Iterability**: Supports `forEach`, `for...of`, and spread syntax.
+3. **Use Cases**:
+   - `Map`: When you need a dictionary-like structure.
+   - `Set`: When you need a collection of unique values.
+
+### **Examples**
+
+#### **Map**
+
+```javascript
+const map = new Map();
+map.set('key1', 'value1');
+map.set(42, 'value2');
+
+console.log(map.get('key1')); // "value1"
+console.log(map.size); // 2
+```
+
+#### **Set**
+
+```javascript
+const set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // Duplicate ignored
+
+console.log(set.has(2)); // true
+console.log([...set]); // [1, 2]
+```
+
+---
+
+## **WeakMap and WeakSet**
+
+### **Definition**
+
+- `WeakMap`: A collection of key-value pairs where keys must be objects.
+- `WeakSet`: A collection of unique objects.
+
+### **Features**
+
+1. **Weak References**: Objects used as keys can be garbage-collected when no other references exist.
+2. **Non-Iterability**: Cannot be iterated over; no methods like `forEach`.
+3. **Use Cases**:
+   - Storing metadata or caching data associated with objects without preventing their garbage collection.
+   - Managing temporary data for DOM elements.
+
+### **Examples**
+
+#### **WeakMap**
+
+```javascript
+const weakMap = new WeakMap();
+let obj = { id: 1 };
+weakMap.set(obj, 'metadata');
+
+console.log(weakMap.get(obj)); // "metadata"
+obj = null; // The object and its value in the WeakMap can be garbage-collected.
+```
+
+#### **WeakSet**
+
+```javascript
+const weakSet = new WeakSet();
+let obj = { id: 2 };
+weakSet.add(obj);
+
+console.log(weakSet.has(obj)); // true
+obj = null; // The object can be garbage-collected.
+```
+
+---
+
+## **Use Cases and Best Practices**
+
+### **When to Use Map/Set**
+
+- Storing and iterating over data with a variety of key or value types.
+- Use cases requiring strong references.
+
+### **When to Use WeakMap/WeakSet**
+
+- Associating metadata or auxiliary information with objects.
+- Managing data that should not prevent object garbage collection.
+
+### **Avoid Common Pitfalls**
+
+- Avoid using `WeakMap`/`WeakSet` when you need iteration.
+- Avoid using `Map`/`Set` for temporary data tied to objects, as it prevents garbage collection.
+
+---
+
+## **Conclusion**
+
+While `Map` and `Set` are general-purpose and suitable for most scenarios, `WeakMap` and `WeakSet` excel in memory-sensitive cases where objects may need to be garbage-collected. Understanding the nuances between these collections helps in selecting the right tool for the job.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+- [MDN Web Docs: WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+- [MDN Web Docs: Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+- [MDN Web Docs: WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet)
+
+<GithubEdit link='/questions/javascript/40-what-are-the-differences-between-map-set-and-weakmap-weakset-in-javascript/page.mdx' />

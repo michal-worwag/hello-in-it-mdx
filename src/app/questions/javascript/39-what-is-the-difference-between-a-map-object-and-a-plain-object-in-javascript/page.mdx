@@ -1,0 +1,112 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What is the difference between a Map object and a plain object in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/39-what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript',
+  },
+};
+
+# What is the difference between a Map object and a plain object in JavaScript?
+
+In JavaScript, both `Map` and plain objects (`{}`) are used to store key-value pairs, but they differ significantly in terms of functionality and behavior.
+
+---
+
+## **Plain Object (`{}`)**
+
+### **Definition**
+
+A plain object is a collection of key-value pairs, where the keys are always strings or symbols.
+
+### **Features**
+
+1. **Key Types**: Keys are automatically converted to strings (unless they are symbols).
+2. **Prototype Inheritance**: Objects inherit from `Object.prototype`, which includes built-in methods that might interfere with custom properties.
+3. **Serialization**: Easily serializable to JSON.
+4. **Performance**: Generally slower when handling a large number of key-value pairs.
+
+### **Example**
+
+```javascript
+let obj = {};
+obj.name = 'Alice'; // Key as a string
+obj[42] = 'Number'; // Key automatically converted to string "42"
+
+console.log(obj); // { name: "Alice", "42": "Number" }
+```
+
+### **Use Cases**
+
+- Storing structured data.
+- When you need JSON serialization (`JSON.stringify(obj)`).
+- Situations where the number of key-value pairs is relatively small.
+
+---
+
+## **Map Object**
+
+### **Definition**
+
+A `Map` is a built-in JavaScript object designed specifically to handle key-value pairs efficiently.
+
+### **Features**
+
+1. **Key Types**: Keys can be any data type, including objects, functions, and primitives.
+2. **Order Preservation**: Keys are iterated in the order they were inserted.
+3. **No Prototype Inheritance**: Does not inherit from `Object.prototype`, ensuring no unintended collisions with built-in methods.
+4. **Size Property**: The `size` property returns the number of key-value pairs directly.
+5. **Performance**: Optimized for handling a large number of entries.
+
+### **Example**
+
+```javascript
+let map = new Map();
+map.set('name', 'Alice'); // String key
+map.set(42, 'Number'); // Number key
+map.set({}, 'Object'); // Object key
+
+console.log(map.get(42)); // "Number"
+console.log(map.size); // 3
+```
+
+### **Use Cases**
+
+- When keys are not limited to strings or symbols.
+- When insertion order matters.
+- When handling large collections of key-value pairs.
+
+---
+
+## **Best Practices**
+
+### **When to Use a Plain Object**
+
+- When you need simple key-value storage with string keys.
+- When working with JSON serialization/deserialization.
+- When compatibility with older JavaScript code is important.
+
+### **When to Use a Map**
+
+- When you need non-string keys.
+- When insertion order is important.
+- When handling a large number of entries or optimizing for performance.
+- When you need a clean key-value structure without prototype interference.
+
+---
+
+## **Conclusion**
+
+While plain objects are versatile and sufficient for many use cases, `Map` offers enhanced functionality and performance for managing key-value pairs, especially when non-string keys or order preservation are required. Choosing between them depends on the specific requirements of your application.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+- [MDN Web Docs: Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+<GithubEdit link='/questions/javascript/39-what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/page.mdx' />

@@ -1,0 +1,187 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Why might you want to create static class members in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/41-why-might-you-want-to-create-static-class-members-in-javascript',
+  },
+};
+
+# Why might you want to create static class members in JavaScript?
+
+Static class members in JavaScript are properties or methods that belong to the class itself rather than an instance of the class. These members are defined using the `static` keyword and are useful in various scenarios.
+
+---
+
+## **Key Features of Static Members**
+
+1. **Class-Level Scope**:
+
+   - Static members are accessible directly on the class, not on its instances.
+   - Ideal for utility functions or shared data.
+
+   ```javascript
+   class MathUtils {
+     static add(a, b) {
+       return a + b;
+     }
+   }
+
+   console.log(MathUtils.add(3, 5)); // 8
+   ```
+
+2. **Shared Across All Instances**:
+
+   - Static members are not duplicated for each instance, reducing memory usage.
+
+   ```javascript
+   class Counter {
+     static count = 0;
+
+     constructor() {
+       Counter.count++;
+     }
+   }
+
+   new Counter();
+   new Counter();
+   console.log(Counter.count); // 2
+   ```
+
+3. **Encapsulation of Class Logic**:
+
+   - Static methods can be used to create or manage instances, providing better encapsulation.
+
+   ```javascript
+   class User {
+     constructor(name) {
+       this.name = name;
+     }
+
+     static createGuest() {
+       return new User('Guest');
+     }
+   }
+
+   const guest = User.createGuest();
+   console.log(guest.name); // "Guest"
+   ```
+
+---
+
+## **Why Use Static Members?**
+
+### 1. **Utility or Helper Functions**
+
+- Define reusable methods that do not depend on instance-specific data.
+- Example: Math operations, string manipulation, etc.
+
+```javascript
+class StringUtils {
+  static toUpperCase(str) {
+    return str.toUpperCase();
+  }
+}
+
+console.log(StringUtils.toUpperCase('hello')); // "HELLO"
+```
+
+### 2. **Shared State or Counters**
+
+- Manage a global state or track class-level metrics without creating separate variables outside the class.
+
+```javascript
+class Logger {
+  static logCount = 0;
+
+  static log(message) {
+    console.log(message);
+    this.logCount++;
+  }
+}
+
+Logger.log('First log');
+Logger.log('Second log');
+console.log(Logger.logCount); // 2
+```
+
+### 3. **Factory Methods**
+
+- Simplify object creation while abstracting away the details.
+
+```javascript
+class Vehicle {
+  constructor(type) {
+    this.type = type;
+  }
+
+  static createCar() {
+    return new Vehicle('Car');
+  }
+}
+
+const car = Vehicle.createCar();
+console.log(car.type); // "Car"
+```
+
+### 4. **Encapsulation of Class Logic**
+
+- Hide implementation details within static methods.
+
+```javascript
+class Config {
+  static #defaultConfig = { theme: 'dark' };
+
+  static getDefaultConfig() {
+    return this.#defaultConfig;
+  }
+}
+
+console.log(Config.getDefaultConfig()); // { theme: "dark" }
+```
+
+---
+
+## **Limitations of Static Members**
+
+1. **No Access to Instance Data**:
+
+   - Static methods cannot access `this` referring to an instance.
+
+   ```javascript
+   class Example {
+     constructor(name) {
+       this.name = name;
+     }
+
+     static greet() {
+       console.log(this.name); // Undefined
+     }
+   }
+
+   Example.greet();
+   ```
+
+2. **Potential Overuse**:
+
+   - Excessive reliance on static members can lead to less modular or testable code.
+
+3. **Not Inherited in Prototypes**:
+   - Static members are not accessible via instances or prototype chains.
+
+---
+
+## **Conclusion**
+
+Static class members in JavaScript are a powerful feature for implementing shared logic, utility functions, and encapsulated class-level behaviors. They are best used when the functionality is not tied to individual instances, promoting better memory efficiency and code organization. However, overusing them can reduce flexibility and modularity, so they should be used judiciously.
+
+---
+
+## **References**
+
+- [MDN Web Docs: static](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static)
+- [JavaScript Info: Static Properties and Methods](https://javascript.info/static-properties-methods)
+
+<GithubEdit link='/questions/javascript/41-why-might-you-want-to-create-static-class-members-in-javascript/page.mdx' />

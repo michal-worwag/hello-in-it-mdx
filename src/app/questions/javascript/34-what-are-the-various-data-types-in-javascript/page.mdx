@@ -1,0 +1,134 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are the various data types in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/34-what-are-the-various-data-types-in-javascript',
+  },
+};
+
+# What are the various data types in JavaScript?
+
+JavaScript has a variety of data types that are categorized into two groups: **primitive** and **non-primitive (complex)** types.
+
+---
+
+## **Primitive Data Types**
+
+These data types are immutable and stored by value.
+
+1. **Number**
+   Represents both integer and floating-point numbers.
+
+   ```javascript
+   let age = 30;
+   let price = 19.99;
+   ```
+
+2. **String**
+   Represents a sequence of characters.
+
+   ```javascript
+   let name = 'Alice';
+   ```
+
+3. **Boolean**
+   Represents a logical value: `true` or `false`.
+
+   ```javascript
+   let isValid = true;
+   ```
+
+4. **Undefined**
+   A variable that has been declared but not assigned a value.
+
+   ```javascript
+   let x;
+   console.log(x); // undefined
+   ```
+
+5. **Null**
+   Represents an explicitly empty or non-existent value.
+
+   ```javascript
+   let y = null;
+   ```
+
+6. **BigInt** (ES2020)
+   Represents integers with arbitrary precision.
+
+   ```javascript
+   let largeNumber = 123456789012345678901234567890n;
+   ```
+
+7. **Symbol** (ES2015)
+   Represents a unique and immutable identifier.
+   ```javascript
+   let sym = Symbol('unique');
+   ```
+
+---
+
+## **Non-Primitive (Complex) Data Types**
+
+These are mutable and stored by reference.
+
+1. **Object**
+   Used to store collections of key-value pairs or more complex entities.
+
+   ```javascript
+   let person = { name: 'Alice', age: 30 };
+   ```
+
+2. **Array** (a special type of Object)
+   Represents an ordered list of values.
+
+   ```javascript
+   let fruits = ['apple', 'banana', 'cherry'];
+   ```
+
+3. **Function** (a callable Object)
+   Represents executable code.
+
+   ```javascript
+   function greet() {
+     return 'Hello!';
+   }
+   ```
+
+4. **Date** (built-in Object)
+   Represents dates and times.
+
+   ```javascript
+   let now = new Date();
+   ```
+
+5. **Other Built-in Objects**
+   Examples include `Map`, `Set`, `WeakMap`, and `WeakSet` for specialized data structures.
+
+---
+
+## **Dynamic Typing**
+
+JavaScript is dynamically typed, meaning variables can hold any data type and change type at runtime.
+
+```javascript
+let data = 42; // Number
+data = 'Hello'; // Now a String
+```
+
+---
+
+## **Conclusion**
+
+Understanding JavaScript's data types is essential for writing robust and bug-free code. Knowing their characteristics, such as mutability and storage, helps developers manage memory and avoid common pitfalls.
+
+---
+
+## **References**
+
+- [MDN Web Docs: JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+
+<GithubEdit link='/questions/javascript/34-what-are-the-various-data-types-in-javascript/page.mdx' />
