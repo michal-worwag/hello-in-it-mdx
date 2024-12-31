@@ -1,0 +1,162 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What language constructs do you use for iterating over object properties and array items in JavaScript?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/35-what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript',
+  },
+};
+
+# What language constructs do you use for iterating over object properties and array items in JavaScript?
+
+JavaScript provides several constructs for iterating over object properties and array items. The choice of construct depends on the type of data structure and the iteration requirements.
+
+---
+
+## **1. Iterating Over Arrays**
+
+### **a. `for` Loop**
+
+The traditional `for` loop iterates over array indices.
+
+```javascript
+const fruits = ['apple', 'banana', 'cherry'];
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
+```
+
+### **b. `for...of` Loop**
+
+Introduced in ES6, it directly iterates over array values.
+
+```javascript
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+```
+
+### **c. `forEach` Method**
+
+Executes a provided function once for each array element.
+
+```javascript
+fruits.forEach((fruit) => {
+  console.log(fruit);
+});
+```
+
+### **d. Array Methods (`map`, `filter`, `reduce`)**
+
+Functional programming methods like `map` and `filter` iterate over array elements while returning a new array or value.
+
+```javascript
+const upperCaseFruits = fruits.map((fruit) => fruit.toUpperCase());
+console.log(upperCaseFruits);
+```
+
+---
+
+## **2. Iterating Over Object Properties**
+
+### **a. `for...in` Loop**
+
+Used to iterate over enumerable properties of an object.
+
+```javascript
+const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+for (const key in person) {
+  console.log(`${key}: ${person[key]}`);
+}
+```
+
+### **b. `Object.keys` Method**
+
+Returns an array of an object's own property keys, which can then be iterated.
+
+```javascript
+Object.keys(person).forEach((key) => {
+  console.log(`${key}: ${person[key]}`);
+});
+```
+
+### **c. `Object.values` Method**
+
+Returns an array of an object's values.
+
+```javascript
+Object.values(person).forEach((value) => {
+  console.log(value);
+});
+```
+
+### **d. `Object.entries` Method**
+
+Returns an array of key-value pairs, which can be iterated with `for...of`.
+
+```javascript
+for (const [key, value] of Object.entries(person)) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+---
+
+## **3. Special Iteration Use Cases**
+
+### **a. Iterating Over Strings**
+
+Strings can be treated as arrays of characters.
+
+```javascript
+const word = 'hello';
+for (const char of word) {
+  console.log(char);
+}
+```
+
+### **b. Iterating Over Maps and Sets**
+
+`Map` and `Set` objects provide their own iterators.
+
+#### **Map**
+
+```javascript
+const map = new Map([
+  ['name', 'Alice'],
+  ['age', 25],
+]);
+for (const [key, value] of map) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+#### **Set**
+
+```javascript
+const set = new Set(['apple', 'banana', 'cherry']);
+for (const value of set) {
+  console.log(value);
+}
+```
+
+---
+
+## **Conclusion**
+
+JavaScript provides versatile constructs for iterating over arrays, objects, strings, and other iterable structures. Selecting the right construct depends on factors such as readability, efficiency, and the type of data structure being iterated over.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Loops and Iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+- [MDN Web Docs: forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+- [MDN Web Docs: Object.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+- [MDN Web Docs: Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+- [MDN Web Docs: Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
+
+<GithubEdit link='/questions/javascript/35-what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript/page.mdx' />

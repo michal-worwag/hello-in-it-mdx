@@ -1,0 +1,131 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'What are iterators and generators in JavaScript and what are they used for?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/37-what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for',
+  },
+};
+
+# What are iterators and generators in JavaScript and what are they used for?
+
+Iterators and generators are foundational features in JavaScript that enable efficient, sequential data processing. Here’s a comprehensive overview of their purpose and usage.
+
+---
+
+## **Iterators**
+
+### **Definition**
+
+An iterator is an object that allows traversal of a sequence (e.g., arrays, strings, or custom collections). It implements the `Iterator` protocol by having a `next()` method that returns an object with:
+
+- A `value` property (the current element in the sequence).
+- A `done` property (a boolean indicating if the iteration is complete).
+
+### **Creating an Iterator**
+
+```javascript
+function createIterator(array) {
+  let index = 0;
+  return {
+    next: function () {
+      if (index < array.length) {
+        return { value: array[index++], done: false };
+      } else {
+        return { value: undefined, done: true };
+      }
+    },
+  };
+}
+
+const iterator = createIterator([1, 2, 3]);
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+### **Use Cases**
+
+- Sequential access to data structures.
+- Abstracting the logic of traversal, especially for custom collections.
+
+---
+
+## **Generators**
+
+### **Definition**
+
+Generators are special functions in JavaScript that return iterators. They are declared using the `function*` syntax and can yield multiple values over time using the `yield` keyword.
+
+### **Features**
+
+1. **Lazy Execution:** Values are produced on-demand, making generators memory efficient.
+2. **Bidirectional Communication:** Generators can receive inputs and produce outputs at runtime.
+
+### **Creating a Generator**
+
+```javascript
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const generator = generateSequence();
+console.log(generator.next()); // { value: 1, done: false }
+console.log(generator.next()); // { value: 2, done: false }
+console.log(generator.next()); // { value: 3, done: false }
+console.log(generator.next()); // { value: undefined, done: true }
+```
+
+### **Use Cases**
+
+1. **Custom Iteration Logic:** Simplify the creation of complex iterators.
+
+   ```javascript
+   function* fibonacci(limit) {
+     let [prev, curr] = [0, 1];
+     for (let i = 0; i < limit; i++) {
+       yield curr;
+       [prev, curr] = [curr, prev + curr];
+     }
+   }
+
+   for (const num of fibonacci(5)) {
+     console.log(num); // Outputs: 1, 1, 2, 3, 5
+   }
+   ```
+
+2. **Asynchronous Programming:** Use `async generators` to handle streams of data.
+
+   ```javascript
+   async function* fetchData(urls) {
+     for (const url of urls) {
+       const response = await fetch(url);
+       yield response.json();
+     }
+   }
+   ```
+
+---
+
+## **Conclusion**
+
+- **Iterators** provide a standard way to sequentially access elements of a collection.
+- **Generators** enhance iteration by simplifying logic, supporting lazy evaluation, and enabling asynchronous workflows.
+
+Both constructs are vital for building efficient, modular, and readable JavaScript code.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Iteration Protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
+- [MDN Web Docs: Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator)
+- [JavaScript.info: Generators](https://javascript.info/generators)
+
+<GithubEdit link='/questions/javascript/37-what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for/page.mdx' />

@@ -1,0 +1,123 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title:
+    'Explain the difference between mutable and immutable objects in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/38-explain-the-difference-between-mutable-and-immutable-objects-in-javascript',
+  },
+};
+
+# Explain the difference between mutable and immutable objects in JavaScript
+
+In JavaScript, objects can be categorized as **mutable** or **immutable** based on whether their state can be modified after creation.
+
+---
+
+## **Mutable Objects**
+
+### **Definition**
+
+A mutable object is one whose properties or state can be changed after it is created.
+
+### **Examples**
+
+1. **Objects:**
+
+   ```javascript
+   const obj = { name: 'Alice' };
+   obj.name = 'Bob'; // Property modified
+   console.log(obj); // { name: "Bob" }
+   ```
+
+2. **Arrays:**
+   ```javascript
+   const arr = [1, 2, 3];
+   arr.push(4); // Array modified
+   console.log(arr); // [1, 2, 3, 4]
+   ```
+
+### **Characteristics**
+
+- Changes affect the original object.
+- Multiple references to the same object share the same state.
+
+  ```javascript
+  const obj1 = { name: 'Alice' };
+  const obj2 = obj1; // obj2 references the same object
+  obj2.name = 'Charlie';
+  console.log(obj1.name); // "Charlie"
+  ```
+
+---
+
+## **Immutable Objects**
+
+### **Definition**
+
+An immutable object cannot be changed after it is created. Any modification results in the creation of a new object.
+
+### **Examples**
+
+1. **Primitive Types (Effectively Immutable):**
+
+   - Strings and numbers are immutable in JavaScript.
+
+     ```javascript
+     const str = 'hello';
+     const newStr = str.toUpperCase();
+     console.log(str); // "hello" (unchanged)
+     console.log(newStr); // "HELLO" (new string)
+     ```
+
+2. **Using Libraries:**
+   Libraries like [Immutable.js](https://immutable-js.github.io/immutable-js/) help manage immutable data structures.
+
+3. **Manual Implementation:**
+   ```javascript
+   const original = { name: 'Alice' };
+   const updated = { ...original, name: 'Bob' }; // Creates a new object
+   console.log(original); // { name: "Alice" }
+   console.log(updated); // { name: "Bob" }
+   ```
+
+### **Characteristics**
+
+- Ensures the original object remains unchanged.
+- Facilitates predictable state management (e.g., in React or Redux).
+
+---
+
+## **Best Practices**
+
+1. **Avoid Unintended Side Effects:**
+   Prefer immutability in large applications to prevent bugs caused by shared state.
+
+   ```javascript
+   const state = { user: 'Alice' };
+   const newState = { ...state, user: 'Bob' };
+   console.log(state); // { user: "Alice" }
+   console.log(newState); // { user: "Bob" }
+   ```
+
+2. **Choose Based on Use Case:**
+   - Use mutable objects for performance-critical operations.
+   - Use immutable objects for predictable state management (e.g., in Redux).
+
+---
+
+## **Conclusion**
+
+Understanding the difference between mutable and immutable objects is essential for writing robust and maintainable JavaScript code. While mutable objects are convenient and efficient, immutable objects provide better predictability and prevent side effects.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Immutability](https://developer.mozilla.org/en-US/docs/Glossary/Immutable)
+- [Immutable.js Documentation](https://immutable-js.github.io/immutable-js/)
+- [JavaScript.info: Objects](https://javascript.info/object)
+
+<GithubEdit link='/questions/javascript/38-explain-the-difference-between-mutable-and-immutable-objects-in-javascript/page.mdx' />
