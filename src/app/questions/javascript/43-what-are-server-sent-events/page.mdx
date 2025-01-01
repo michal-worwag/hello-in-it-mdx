@@ -1,0 +1,144 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are server-sent events?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical: '/questions/javascript/43-what-are-server-sent-events',
+  },
+};
+
+# What are server-sent events?
+
+Server-Sent Events (SSE) is a web technology that allows a server to send real-time updates to a browser over a single HTTP connection. Unlike WebSockets, SSE is unidirectional, meaning data flows only from the server to the client.
+
+---
+
+## **Key Features of SSE**
+
+1. **Unidirectional Communication:**
+
+   - The server can push updates to the client, but the client cannot send data back through the same connection.
+
+2. **Uses HTTP Protocol:**
+
+   - SSE operates over standard HTTP, making it easier to implement with existing infrastructure like firewalls and load balancers.
+
+3. **Persistent Connection:**
+
+   - Maintains a single long-lived connection between the client and server.
+
+4. **Automatic Reconnection:**
+
+   - The browser automatically attempts to reconnect if the connection is lost.
+
+5. **Simple API:**
+   - SSE uses the `EventSource` API for easy implementation.
+
+---
+
+## **How SSE Works**
+
+1. **Server Setup:**
+
+   - The server sends data in text/event-stream format with a `Content-Type` header of `text/event-stream`.
+   - The server keeps the connection open and streams updates to the client.
+
+2. **Client Setup:**
+   - The client uses the `EventSource` object to listen for messages.
+
+---
+
+## **Example**
+
+### **Server-Side (Node.js Example)**
+
+```javascript
+const http = require('http');
+
+http
+  .createServer((req, res) => {
+    if (req.url === '/events') {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        Connection: 'keep-alive',
+      });
+
+      setInterval(() => {
+        res.write(`data: ${new Date().toISOString()}\n\n`);
+      }, 1000);
+    }
+  })
+  .listen(3000, () => console.log('Server running on port 3000'));
+```
+
+### **Client-Side**
+
+```javascript
+const eventSource = new EventSource('/events');
+
+eventSource.onmessage = (event) => {
+  console.log('Message from server:', event.data);
+};
+
+eventSource.onerror = () => {
+  console.error('Connection error');
+};
+```
+
+---
+
+## **Advantages of SSE**
+
+1. **Ease of Use:**
+
+   - Simple API and no need for additional libraries.
+
+2. **Automatic Reconnection:**
+
+   - The client automatically reconnects if the connection drops.
+
+3. **Built-In Message Handling:**
+
+   - Supports event-specific listeners using `addEventListener`.
+
+4. **Lightweight:**
+   - Minimal overhead compared to WebSockets.
+
+---
+
+## **Limitations of SSE**
+
+1. **Unidirectional:**
+
+   - Only allows data flow from server to client.
+
+2. **Limited Browser Support:**
+
+   - Not supported by Internet Explorer.
+
+3. **Scalability Concerns:**
+
+   - Maintaining many open connections can strain the server.
+
+4. **Text-Only Data:**
+   - SSE supports only text; binary data must be encoded.
+
+---
+
+## **When to Use SSE**
+
+- Real-time updates like stock prices, notifications, or news feeds.
+- Scenarios where data flows only from the server to the client.
+- Applications that rely on HTTP/2 or HTTP/1.1 infrastructure.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+- [HTML Living Standard: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html)
+- [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)
+
+<GithubEdit link='/questions/javascript/43-what-are-server-sent-events/page.mdx' />

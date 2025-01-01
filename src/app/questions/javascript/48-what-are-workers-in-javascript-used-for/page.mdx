@@ -1,0 +1,109 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are workers in JavaScript used for?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/48-what-are-workers-in-javascript-used-for',
+  },
+};
+
+# What are workers in JavaScript used for?
+
+JavaScript workers are a mechanism for running scripts in background threads, separate from the main execution thread of a web application. They allow developers to perform tasks like data processing, file manipulation, or other CPU-intensive operations without blocking the main thread, which is responsible for user interface interactions.
+
+---
+
+## **Types of Workers**
+
+### **1. Web Workers**
+
+- Standard workers that run in a separate thread.
+- Useful for long-running tasks.
+
+### **2. Shared Workers**
+
+- Can be shared between multiple scripts or tabs in the same origin.
+
+### **3. Service Workers**
+
+- Operate as a proxy between the browser and the network.
+- Commonly used for enabling offline capabilities and caching resources.
+
+---
+
+## **Benefits of Using Workers**
+
+1. **Non-blocking Operations:**
+   Workers allow computationally heavy tasks to run in parallel, ensuring the main thread remains responsive.
+
+   ```javascript
+   const worker = new Worker('worker.js');
+   worker.postMessage('Start task');
+
+   worker.onmessage = (event) => {
+     console.log('Result:', event.data);
+   };
+   ```
+
+2. **Improved Performance:**
+   By offloading tasks, applications can better utilize multicore processors.
+
+3. **Enhanced User Experience:**
+   The user interface remains smooth and interactive, even during heavy computations.
+
+---
+
+## **Common Use Cases**
+
+1. **Data Processing:**
+
+   - Image manipulation
+   - Large array computations
+
+2. **Real-time Applications:**
+
+   - Chat applications
+   - Gaming logic
+
+3. **Asynchronous I/O Operations:**
+
+   - File reading/writing in web applications
+
+4. **Background Sync:**
+   - Periodically fetching data in service workers.
+
+---
+
+## **Limitations**
+
+1. **No Access to DOM:**
+   Workers cannot directly access or manipulate the Document Object Model (DOM).
+
+   ```javascript
+   // Inside a Worker
+   self.postMessage('DOM access not allowed here');
+   ```
+
+2. **Same-Origin Policy:**
+   Workers must be loaded from the same origin as the main script.
+
+3. **Communication Overhead:**
+   Passing large amounts of data between the worker and the main thread can be slow.
+
+---
+
+## **Conclusion**
+
+JavaScript workers provide a powerful way to enhance performance and responsiveness in web applications by running tasks in background threads. Despite some limitations, they are invaluable for applications requiring intensive computation or real-time updates.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
+- [MDN Web Docs: Using Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+- [HTML Living Standard: Workers](https://html.spec.whatwg.org/multipage/workers.html)
+
+<GithubEdit link='/questions/javascript/48-what-are-workers-in-javascript-used-for/page.mdx' />

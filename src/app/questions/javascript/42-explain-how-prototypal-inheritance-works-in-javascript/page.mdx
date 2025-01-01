@@ -1,0 +1,195 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain how prototypal inheritance works in JavaScript',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/42-explain-how-prototypal-inheritance-works-in-javascript',
+  },
+};
+
+# Explain how prototypal inheritance works in JavaScript
+
+Prototypal inheritance is a mechanism in JavaScript that allows objects to inherit properties and methods from other objects. This is a core feature of JavaScript's object system, making it flexible and dynamic.
+
+---
+
+## **Key Concepts of Prototypal Inheritance**
+
+### 1. **Prototype Chain**
+
+- Every object in JavaScript has an internal link, called `[[Prototype]]`, which points to another object (its prototype).
+- If a property or method is not found on an object, JavaScript looks for it in the object's prototype, continuing up the chain until it finds the property or reaches `null`.
+
+```javascript
+const parent = {
+  greet() {
+    console.log('Hello from the parent!');
+  },
+};
+
+const child = Object.create(parent);
+child.sayHi = function () {
+  console.log('Hi from the child!');
+};
+
+child.greet(); // "Hello from the parent!"
+```
+
+### 2. **The `Object.create()` Method**
+
+- `Object.create(proto)` creates a new object with its `[[Prototype]]` set to `proto`.
+
+```javascript
+const parent = { role: 'Parent' };
+const child = Object.create(parent);
+
+console.log(child.role); // "Parent"
+```
+
+### 3. **Constructor Functions and Prototypes**
+
+- Constructor functions use the `prototype` property to establish inheritance.
+- Objects created by a constructor function have their `[[Prototype]]` set to the constructor's `prototype`.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHello = function () {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+const john = new Person('John');
+john.sayHello(); // "Hello, my name is John"
+```
+
+### 4. **ES6 Classes**
+
+- Classes in JavaScript are syntactic sugar over prototypal inheritance.
+- The `extends` keyword allows you to create a subclass that inherits from a parent class.
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+const dog = new Dog('Rex');
+dog.speak(); // "Rex barks."
+```
+
+---
+
+## **How the Prototype Chain Works**
+
+When accessing a property or method:
+
+1. JavaScript checks the object itself.
+2. If the property/method is not found, it checks the object's `[[Prototype]]`.
+3. This process continues up the chain until the property is found or the `[[Prototype]]` is `null`.
+
+```javascript
+const grandparent = { generation: 'Grandparent' };
+const parent = Object.create(grandparent);
+parent.generation = 'Parent';
+const child = Object.create(parent);
+
+console.log(child.generation); // "Parent"
+console.log(child.__proto__.generation); // "Parent"
+console.log(child.__proto__.__proto__.generation); // "Grandparent"
+```
+
+---
+
+## **Advantages of Prototypal Inheritance**
+
+1. **Dynamic Sharing of Properties and Methods**
+
+   - Objects can inherit and share behavior without copying it.
+
+2. **Flexibility**
+
+   - You can extend or modify prototypes at runtime.
+
+3. **Memory Efficiency**
+   - Shared methods are stored in a single location (the prototype) instead of duplicating them in every instance.
+
+---
+
+## **Common Pitfalls**
+
+### 1. **Overriding Properties**
+
+- If a property is defined both on an object and its prototype, the object's property takes precedence.
+
+```javascript
+const parent = { name: 'Parent' };
+const child = Object.create(parent);
+child.name = 'Child';
+
+console.log(child.name); // "Child"
+console.log(child.__proto__.name); // "Parent"
+```
+
+### 2. **Accidental Prototype Modification**
+
+- Changes to the prototype affect all objects inheriting from it.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function () {
+  console.log('Hello');
+};
+
+const alice = new Person('Alice');
+const bob = new Person('Bob');
+
+Person.prototype.greet = function () {
+  console.log('Hi');
+};
+
+alice.greet(); // "Hi"
+bob.greet(); // "Hi"
+```
+
+---
+
+## **Best Practices**
+
+1. Use `Object.create()` for simple inheritance.
+2. Prefer ES6 classes for cleaner syntax and better readability.
+3. Avoid modifying built-in prototypes (e.g., `Array.prototype`, `Object.prototype`) to prevent unintended side effects.
+4. Keep prototypes immutable whenever possible to avoid unexpected behavior.
+
+---
+
+## **Conclusion**
+
+Prototypal inheritance is a powerful and flexible feature in JavaScript, enabling dynamic behavior sharing and efficient memory usage. Understanding how it works allows developers to write cleaner, more maintainable code. Whether using `Object.create()`, constructor functions, or ES6 classes, it's essential to follow best practices to avoid common pitfalls.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Prototypes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+- [JavaScript Info: Prototypal Inheritance](https://javascript.info/prototype-inheritance)
+- [MDN Web Docs: Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+<GithubEdit link='/questions/javascript/42-explain-how-prototypal-inheritance-works-in-javascript/page.mdx' />

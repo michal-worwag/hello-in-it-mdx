@@ -1,0 +1,231 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are proxies in JavaScript used for?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/46-what-are-proxies-in-javascript-used-for',
+  },
+};
+
+# What are proxies in JavaScript used for?
+
+Proxies in JavaScript are objects that allow you to intercept and customize fundamental operations on other objects. These operations include property lookup, assignment, enumeration, function invocation, and more. Proxies are created using the `Proxy` constructor.
+
+---
+
+## **Syntax**
+
+```javascript
+let proxy = new Proxy(target, handler);
+```
+
+- **`target`**: The object being proxied.
+- **`handler`**: An object containing traps (methods) that define custom behavior for operations on the proxy.
+
+---
+
+## **Use Cases**
+
+### 1. **Custom Property Behavior**
+
+Proxies allow you to add custom behavior when accessing or modifying object properties.
+
+#### Example: Logging Property Access
+
+```javascript
+const user = {
+  name: 'Alice',
+};
+
+const userProxy = new Proxy(user, {
+  get(target, prop) {
+    console.log(`Property '${prop}' was accessed.`);
+    return target[prop];
+  },
+});
+
+console.log(userProxy.name); // Logs "Property 'name' was accessed." and outputs "Alice"
+```
+
+---
+
+### 2. **Validation**
+
+Proxies can enforce rules when setting properties on an object.
+
+#### Example: Validating Property Assignment
+
+```javascript
+const user = {};
+
+const userProxy = new Proxy(user, {
+  set(target, prop, value) {
+    if (prop === 'age' && typeof value !== 'number') {
+      throw new TypeError('Age must be a number.');
+    }
+    target[prop] = value;
+    return true;
+  },
+});
+
+userProxy.age = 30; // Works
+userProxy.age = 'thirty'; // Throws TypeError: Age must be a number.
+```
+
+---
+
+### 3. **Default Values**
+
+Proxies can provide default values for missing properties.
+
+#### Example: Returning Default Values
+
+```javascript
+const defaults = {
+  name: 'Unknown',
+};
+
+const userProxy = new Proxy(
+  {},
+  {
+    get(target, prop) {
+      return prop in target ? target[prop] : defaults[prop];
+    },
+  }
+);
+
+console.log(userProxy.name); // "Unknown"
+```
+
+---
+
+### 4. **Monitoring and Debugging**
+
+Proxies can monitor operations on objects, useful for debugging or analytics.
+
+#### Example: Logging All Operations
+
+```javascript
+const obj = {};
+
+const proxy = new Proxy(obj, {
+  get(target, prop) {
+    console.log(`Getting property '${prop}'`);
+    return target[prop];
+  },
+  set(target, prop, value) {
+    console.log(`Setting property '${prop}' to '${value}'`);
+    target[prop] = value;
+    return true;
+  },
+});
+
+proxy.name = 'Alice'; // Logs: Setting property 'name' to 'Alice'
+console.log(proxy.name); // Logs: Getting property 'name'
+```
+
+---
+
+### 5. **Wrapper for Libraries**
+
+Proxies can wrap libraries or APIs to modify or extend their behavior.
+
+#### Example: Modifying API Calls
+
+```javascript
+const api = {
+  fetchData() {
+    return 'Data from API';
+  },
+};
+
+const apiProxy = new Proxy(api, {
+  get(target, prop) {
+    if (prop === 'fetchData') {
+      return () => 'Modified data';
+    }
+    return target[prop];
+  },
+});
+
+console.log(apiProxy.fetchData()); // "Modified data"
+```
+
+---
+
+## **Common Traps**
+
+### 1. **`get` Trap**
+
+Intercepts property access.
+
+```javascript
+get(target, property, receiver) { }
+```
+
+### 2. **`set` Trap**
+
+Intercepts property assignments.
+
+```javascript
+set(target, property, value, receiver) { }
+```
+
+### 3. **`apply` Trap**
+
+Intercepts function calls.
+
+```javascript
+apply(target, thisArg, argumentsList) { }
+```
+
+### 4. **`has` Trap**
+
+Intercepts the `in` operator.
+
+```javascript
+has(target, property) { }
+```
+
+### 5. **`deleteProperty` Trap**
+
+Intercepts property deletion.
+
+```javascript
+deleteProperty(target, property) { }
+```
+
+---
+
+## **Benefits**
+
+1. **Flexibility:** Customize behavior for any operation on an object.
+2. **Validation:** Enforce rules dynamically.
+3. **Monitoring:** Track or debug object interactions.
+4. **Extensibility:** Enhance existing objects or APIs.
+
+---
+
+## **Limitations**
+
+1. **Performance:** Proxies introduce additional overhead for intercepted operations.
+2. **Complexity:** Custom behaviors can make code harder to understand and debug.
+3. **Compatibility:** Older browsers or environments may not support `Proxy` (e.g., Internet Explorer).
+
+---
+
+## **Conclusion**
+
+JavaScript proxies are powerful tools for customizing object behavior. They are ideal for validation, monitoring, debugging, and extending functionality. However, they should be used judiciously to avoid performance and complexity issues.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+- [JavaScript.info: Proxy and Reflect](https://javascript.info/proxy)
+- [Understanding JavaScript Proxies](https://blog.logrocket.com/understanding-javascript-proxies/)
+
+<GithubEdit link='/questions/javascript/46-what-are-proxies-in-javascript-used-for/page.mdx' />
