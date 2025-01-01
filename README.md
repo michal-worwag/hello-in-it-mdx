@@ -49,13 +49,20 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [39-What is the difference between a Map object and a plain object in JavaScript?](https://helloin.it/questions/javascript/39-what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript)
 - [40-What are the differences between Map/Set and WeakMap/WeakSet in JavaScript?](https://helloin.it/questions/javascript/40-what-are-the-differences-between-map-set-and-weakmap-weakset-in-javascript)
 - [41-Why might you want to create static class members in JavaScript?](https://helloin.it/questions/javascript/41-why-might-you-want-to-create-static-class-members-in-javascript)
+- [42-Explain how prototypal inheritance works in JavaScript](https://helloin.it/questions/javascript/42-explain-how-prototypal-inheritance-works-in-javascript)
+- [43-What are server-sent events?](https://helloin.it/questions/javascript/43-what-are-server-sent-events)
+- [44-What advantage is there for using the JavaScript arrow syntax for a method in a constructor?](https://helloin.it/questions/javascript/44-what-advantage-is-there-for-using-the-javascript-arrow-syntax-for-a-method-in-a-constructor)
+- [45-What are JavaScript object getters and setters for?](https://helloin.it/questions/javascript/45-what-are-javascript-object-getters-and-setters-for)
+- [46-What are proxies in JavaScript used for?](https://helloin.it/questions/javascript/46-what-are-proxies-in-javascript-used-for)
+- [47-What tools and techniques do you use for debugging JavaScript code?](https://helloin.it/questions/javascript/47-what-tools-and-techniques-do-you-use-for-debugging-javascript-code)
+- [48-What are workers in JavaScript used for?](https://helloin.it/questions/javascript/48-what-are-workers-in-javascript-used-for)
 
 ### 2. [React Questions](https://helloin.it/questions/react/)
 
 - [01-Explain the purpose of the useEffect hook in React](https://helloin.it/questions/react/01-explain-the-purpose-of-the-useeffect-hook-in-react)
-- [02-What are React Fragments, and why are they used?t](https://helloin.it/questions/react/02-what-are-react-fragments-and-why-are-they-used)
+- [02-What are React Fragments, and why are they used?](https://helloin.it/questions/react/02-what-are-react-fragments-and-why-are-they-used)
 - [03-What are the main features of React?](https://helloin.it/questions/react/03-what-are-the-main-features-of-react)
-- [04-What is the difference between controlled and uncontrolled components?t](https://helloin.it/questions/react/04-what-is-the-difference-between-controlled-and-uncontrolled-components)
+- [04-What is the difference between controlled and uncontrolled components?](https://helloin.it/questions/react/04-what-is-the-difference-between-controlled-and-uncontrolled-components)
 
 ### 3. [TypeScript Questions](https://helloin.it/questions/typescript/)
 

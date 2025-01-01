@@ -1,0 +1,199 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What tools and techniques do you use for debugging JavaScript code?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/47-what-tools-and-techniques-do-you-use-for-debugging-javascript-code',
+  },
+};
+
+# What tools and techniques do you use for debugging JavaScript code?
+
+Debugging is an essential part of JavaScript development. Below are various tools and techniques commonly used to identify and fix issues in JavaScript code.
+
+---
+
+## **1. Built-in Developer Tools**
+
+### **Browser Developer Tools**
+
+Modern browsers provide robust developer tools that help debug JavaScript code.
+
+#### **Features:**
+
+- **Console:** Logs output, errors, and warnings.
+- **Debugger:** Pauses code execution and steps through code.
+- **Network Tab:** Inspects HTTP requests and responses.
+- **Elements Tab:** Analyzes and modifies DOM elements.
+
+#### **Example:**
+
+```javascript
+console.log('Debugging value:', variable);
+```
+
+**Shortcut to Open DevTools:**
+
+- Chrome: `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Option+I` (Mac).
+- Firefox: `Ctrl+Shift+K` or `Cmd+Option+K`.
+
+---
+
+## **2. Logging with `console` Methods**
+
+### **Common Methods:**
+
+- **`console.log`**: Logs general information.
+- **`console.error`**: Logs errors in red.
+- **`console.warn`**: Logs warnings.
+- **`console.table`**: Displays data in a table format.
+
+#### **Example:**
+
+```javascript
+console.table([
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+]);
+```
+
+---
+
+## **3. Debugger Statements**
+
+Use the `debugger` keyword to set a breakpoint directly in the code.
+
+#### **Example:**
+
+```javascript
+function calculate(a, b) {
+  debugger; // Execution will pause here
+  return a + b;
+}
+```
+
+---
+
+## **4. Linting Tools**
+
+Linting tools analyze code for potential errors and enforce coding standards.
+
+### **Popular Tools:**
+
+- **ESLint:** Highly configurable and integrates with most editors.
+- **JSHint:** Lightweight linting tool for JavaScript.
+
+#### **Example Configuration:**
+
+```json
+{
+  "rules": {
+    "no-unused-vars": "warn",
+    "eqeqeq": "error"
+  }
+}
+```
+
+---
+
+## **5. Unit Testing and Debugging Tests**
+
+Testing frameworks help isolate issues in specific parts of the code.
+
+### **Popular Frameworks:**
+
+- **Jest:** Easy-to-use testing framework with built-in mocking.
+- **Mocha:** Flexible framework often used with assertion libraries like Chai.
+
+#### **Example:**
+
+```javascript
+test('adds two numbers', () => {
+  expect(add(2, 3)).toBe(5);
+});
+```
+
+---
+
+## **6. Using Online Debugging Tools**
+
+### **CodePlaygrounds:**
+
+- **CodePen**
+- **JSFiddle**
+- **Replit**
+
+These tools allow you to run and debug JavaScript in an isolated environment.
+
+---
+
+## **7. Debugging in Node.js**
+
+Use the built-in `--inspect` flag or tools like `ndb` for debugging server-side JavaScript.
+
+#### **Example:**
+
+```bash
+node --inspect app.js
+```
+
+---
+
+## **8. Profiling and Performance Tools**
+
+### **Browser Profilers:**
+
+Analyze performance bottlenecks and optimize code.
+
+- Chrome: **Performance Tab**
+- Firefox: **Performance Profiler**
+
+---
+
+## **9. Error Tracking Tools**
+
+Error tracking tools monitor and log issues in production environments.
+
+### **Popular Tools:**
+
+- **Sentry**
+- **Rollbar**
+- **Bugsnag**
+
+---
+
+## **10. Techniques for Efficient Debugging**
+
+### **A. Binary Search Debugging**
+
+Comment out large sections of code and isolate the problematic area.
+
+### **B. Add Assertions**
+
+Use assertions to validate assumptions in the code.
+
+```javascript
+console.assert(user !== undefined, 'User object is undefined!');
+```
+
+### **C. Use Stack Traces**
+
+Track the origin of errors using stack traces in error logs.
+
+---
+
+## **Conclusion**
+
+Effective debugging in JavaScript involves a combination of tools and techniques. Familiarizing yourself with browser dev tools, logging methods, linting, and error tracking can significantly enhance your ability to identify and resolve issues.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Debugging JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises)
+- [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+- [Node.js Debugging Guide](https://nodejs.org/en/docs/guides/debugging-getting-started/)
+
+<GithubEdit link='/questions/javascript/47-what-tools-and-techniques-do-you-use-for-debugging-javascript-code/page.mdx' />

@@ -1,0 +1,194 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'What are JavaScript object getters and setters for?',
+  publishDate: '2024-12-13T19:00:00Z',
+  alternates: {
+    canonical:
+      '/questions/javascript/45-what-are-javascript-object-getters-and-setters-for',
+  },
+};
+
+# What are JavaScript object getters and setters for?
+
+JavaScript object getters and setters provide a way to define custom logic for retrieving and modifying object properties. They offer more control over how properties are accessed and updated, making it possible to add validation, computation, or other side effects when interacting with object properties.
+
+---
+
+## **Getters**
+
+Getters allow you to define a function that is executed when a property is accessed.
+
+### Syntax
+
+```javascript
+let obj = {
+  get propertyName() {
+    // return a value
+  },
+};
+```
+
+### Example
+
+```javascript
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+};
+
+console.log(person.fullName); // "John Doe"
+```
+
+In this example, `fullName` is not a stored property but a computed value based on `firstName` and `lastName`.
+
+---
+
+## **Setters**
+
+Setters allow you to define a function that is executed when a property is assigned a value.
+
+### Syntax
+
+```javascript
+let obj = {
+  set propertyName(value) {
+    // process the value
+  },
+};
+```
+
+### Example
+
+```javascript
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+
+  set fullName(name) {
+    const parts = name.split(' ');
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  },
+};
+
+person.fullName = 'Jane Smith';
+console.log(person.firstName); // "Jane"
+console.log(person.lastName); // "Smith"
+```
+
+In this example, setting `fullName` updates `firstName` and `lastName`.
+
+---
+
+## **Benefits of Getters and Setters**
+
+1. **Encapsulation:**
+
+   - Hide internal implementation details and expose a clean interface.
+
+2. **Validation:**
+
+   - Validate or sanitize values before setting them.
+
+   ```javascript
+   const user = {
+     _age: 0,
+
+     get age() {
+       return this._age;
+     },
+
+     set age(value) {
+       if (value < 0) {
+         console.error('Age must be positive');
+         return;
+       }
+       this._age = value;
+     },
+   };
+
+   user.age = -5; // "Age must be positive"
+   console.log(user.age); // 0
+   ```
+
+3. **Computed Properties:**
+
+   - Dynamically compute property values based on other properties.
+
+4. **Debugging and Logging:**
+   - Add logging or tracking when properties are accessed or updated.
+
+---
+
+## **Combining Getters and Setters**
+
+Getters and setters can work together to provide a seamless interface.
+
+### Example
+
+```javascript
+const temperature = {
+  _celsius: 0,
+
+  get fahrenheit() {
+    return this._celsius * 1.8 + 32;
+  },
+
+  set fahrenheit(value) {
+    this._celsius = (value - 32) / 1.8;
+  },
+};
+
+temperature.fahrenheit = 100;
+console.log(temperature._celsius); // 37.777...
+console.log(temperature.fahrenheit); // 100
+```
+
+---
+
+## **Limitations**
+
+1. **Performance Overhead:**
+
+   - Getters and setters add a layer of function calls, which might slightly impact performance in high-frequency use cases.
+
+2. **Debugging Challenges:**
+
+   - Implicit function calls can make it harder to trace issues in code.
+
+3. **Not Enumerated in Loops:**
+
+   - Getters and setters are not included when iterating over an object’s properties with `for...in`.
+
+   ```javascript
+   const obj = {
+     get prop() {
+       return 'value';
+     },
+   };
+
+   for (let key in obj) {
+     console.log(key); // Does not log 'prop'
+   }
+   ```
+
+---
+
+## **Conclusion**
+
+Getters and setters provide a powerful way to control property access in JavaScript objects. They enable validation, computation, and encapsulation, making them invaluable in managing complex object behaviors. However, they should be used judiciously to avoid unnecessary complexity or performance impacts.
+
+---
+
+## **References**
+
+- [MDN Web Docs: Getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
+- [MDN Web Docs: Setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)
+- [JavaScript.info: Property Getters and Setters](https://javascript.info/property-accessors)
+
+<GithubEdit link='/questions/javascript/45-what-are-javascript-object-getters-and-setters-for/page.mdx' />
