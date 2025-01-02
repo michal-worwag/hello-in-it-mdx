@@ -73,6 +73,9 @@ Here you can find all questions: [HelloIn.IT](https://helloin.it)
 - [05-Explain the concept of Union and Intersection types](https://helloin.it/questions/typescript/05-typescript-union-intersection-types)
 - [06-What is the purpose of the unknown type? How is it different from any?](https://helloin.it/questions/typescript/06-typescript-unknown-vs-any)
 - [07-What is TypeScript, and how is it different from JavaScript?](https://helloin.it/questions/typescript/07-what-is-typescript-difference-with-javascript)
+- [08-Explain Arrays in TypeScript](https://helloin.it/questions/typescript/08-explain-arrays-in-typescript)
+- [09-List the Applications of TypeScript](https://helloin.it/questions/typescript/09-list-the-applications-of-typescript)
+- [10-List the Advantages of TypeScript](https://helloin.it/questions/typescript/10-list-the-advantages-of-typescript)
 
 ### 4. [CSS Questions](https://helloin.it/questions/css/)
 

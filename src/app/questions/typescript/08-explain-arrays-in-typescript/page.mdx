@@ -1,0 +1,56 @@
+import GithubEdit from '@/components/github-edit';
+
+export const metadata = {
+  title: 'Explain Arrays in TypeScript',
+  alternates: {
+    canonical: '/questions/typescript/08-explain-arrays-in-typescript',
+  },
+};
+
+# Explain Arrays in TypeScript
+
+In TypeScript, arrays are used to store a collection of elements of the same type, offering type safety and additional functionality over JavaScript arrays. They can be defined in two ways:
+
+1. **Square Brackets Notation:**
+
+```typescript
+let numbers: number[] = [1, 2, 3, 4];
+```
+
+2. **Array Generic Type:**
+
+```typescript
+let strings: Array<string> = ['a', 'b', 'c'];
+```
+
+#### Key Features
+
+- **Type Safety:** Ensures all elements adhere to a specific type.
+- **Methods:** Provides JavaScript array methods with compile-time checks (e.g., `push`, `map`, `filter`).
+- **Multi-dimensional Arrays:** Supports arrays of arrays.
+
+#### Example:
+
+```typescript
+let matrix: number[][] = [
+  [1, 2],
+  [3, 4],
+];
+```
+
+#### Tuples
+
+TypeScript extends arrays with tuples, allowing fixed-length arrays with specific types for each position:
+
+```typescript
+let tuple: [string, number] = ['age', 25];
+```
+
+---
+
+#### References
+
+- [TypeScript Documentation: Arrays](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays)
+- [MDN Web Docs: Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+<GithubEdit link='/questions/typescript/08-explain-arrays-in-typescript/page.mdx' />
