@@ -1,7 +1,8 @@
 import GithubEdit from '@/components/github-edit';
 
 export const metadata = {
-  title: 'What is the Difference Between an Interface and a Class in TypeScript?',
+  title:
+    'What is the Difference Between an Interface and a Class in TypeScript?',
   alternates: {
     canonical:
       '/questions/typescript/14-what-is-the-difference-between-an-interface-and-a-class-in-typescript',
@@ -10,5 +11,15 @@ export const metadata = {
 
 # What is the Difference Between an Interface and a Class in TypeScript?
 
-<GithubEdit link='/questions/typescript/14-what-is-the-difference-between-an-interface-and-a-class-in-typescript/page.mdx' />
+In TypeScript, interfaces and classes serve distinct purposes:
 
+- Interfaces define the structure of an object by specifying properties and method signatures without providing implementations. They are used for type-checking during development and do not exist in the compiled JavaScript code.
+
+- Classes are blueprints for creating objects, encapsulating data and behavior. They can have constructors, methods with implementations, and support access modifiers like public, private, and protected. Unlike interfaces, classes are present in the compiled JavaScript code.
+
+In summary, interfaces are used for defining object shapes and ensuring type safety, while classes are used for creating objects with specific implementations and behaviors.
+
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html#interfaces)
+- [Difference between interfaces and classes in TypeScript](https://www.geeksforgeeks.org/difference-between-interfaces-and-classes-in-typescript/)
+
+<GithubEdit link='/questions/typescript/14-what-is-the-difference-between-an-interface-and-a-class-in-typescript/page.mdx' />
