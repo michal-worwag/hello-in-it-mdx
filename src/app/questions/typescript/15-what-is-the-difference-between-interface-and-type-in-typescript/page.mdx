@@ -10,5 +10,17 @@ export const metadata = {
 
 # What is the Difference Between "interface" and "type" in TypeScript?
 
-<GithubEdit link='/questions/typescript/15-what-is-the-difference-between-interface-and-type-in-typescript/page.mdx' />
+In TypeScript, both interface and type can define object shapes, but they have key differences:
 
+- Declaration Merging: Interfaces support declaration merging, allowing multiple declarations to be combined. Types do not support this feature.
+
+- Extensibility: Interfaces can extend other interfaces or type aliases using the extends keyword. Types can create new types by combining existing ones using intersection (&) and union (|) operators.
+
+- Primitives and Unions: Type aliases can represent primitive values, union types, and tuples, which interfaces cannot.
+
+In summary, use interfaces for defining object shapes and when declaration merging is beneficial. Use type aliases for primitives, unions, and when needing advanced type compositions.
+
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html#type-annotations)
+- [Types vs. interfaces in TypeScript](https://blog.logrocket.com/types-vs-interfaces-typescript/)
+
+<GithubEdit link='/questions/typescript/15-what-is-the-difference-between-interface-and-type-in-typescript/page.mdx' />

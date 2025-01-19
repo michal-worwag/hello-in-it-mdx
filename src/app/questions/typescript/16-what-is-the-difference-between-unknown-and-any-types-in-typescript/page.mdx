@@ -1,7 +1,8 @@
 import GithubEdit from '@/components/github-edit';
 
 export const metadata = {
-  title: 'What is the Difference Between "unknown" and "any" Types in TypeScript?',
+  title:
+    'What is the Difference Between "unknown" and "any" Types in TypeScript?',
   alternates: {
     canonical:
       '/questions/typescript/16-what-is-the-difference-between-unknown-and-any-types-in-typescript',
@@ -10,5 +11,15 @@ export const metadata = {
 
 # What is the Difference Between "unknown" and "any" Types in TypeScript?
 
-<GithubEdit link='/questions/typescript/16-what-is-the-difference-between-unknown-and-any-types-in-typescript/page.mdx' />
+In TypeScript, both any and unknown types can represent any value, but they differ in type safety:
 
+- `any`: Disables type checking, allowing any operations on the variable without compile-time errors. This can lead to runtime errors if the variable doesn't have the expected type.
+
+- `unknown`: A type-safe counterpart to any. While any value can be assigned to an unknown variable, TypeScript enforces type checks before you can perform operations on it, ensuring safer code.
+
+In summary, use unknown when you want a variable to accept any value but still enforce type safety, and use any when you need maximum flexibility without type checks.
+
+- [TypeScript Official Documentation - any](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
+- [TypeScript Official Documentation - unknown](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown)
+
+<GithubEdit link='/questions/typescript/16-what-is-the-difference-between-unknown-and-any-types-in-typescript/page.mdx' />
