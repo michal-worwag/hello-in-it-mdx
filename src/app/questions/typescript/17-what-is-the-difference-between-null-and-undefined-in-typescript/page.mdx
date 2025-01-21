@@ -10,5 +10,19 @@ export const metadata = {
 
 # What is the Difference Between "null" and "undefined" in TypeScript?
 
-<GithubEdit link='/questions/typescript/17-what-is-the-difference-between-null-and-undefined-in-typescript/page.mdx' />
+In TypeScript, `null` and `undefined` both represent the absence of a value but differ in their usage and implications:
 
+- `null`: Denotes the intentional absence of any object value. It's explicitly assigned to a variable to indicate that it currently holds no value.
+- `undefined`: Indicates that a variable has been declared but has not yet been assigned a value. It's the default value for uninitialized variables.
+
+The behavior of these types is influenced by the `strictNullChecks` compiler option:
+
+- With `strictNullChecks` disabled: Both `null` and `undefined` are considered assignable to any type, which can lead to unexpected errors.
+- With `strictNullChecks` enabled: `null` and `undefined` are only assignable to their respective types (and `any`), enhancing type safety by preventing unintended assignments.
+
+Understanding these distinctions is crucial for effective type management and avoiding common pitfalls in TypeScript development.
+
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+- [Difference Between null & undefined in TypeScript](https://www.geeksforgeeks.org/difference-between-null-undefined-in-typescript/)
+
+<GithubEdit link='/questions/typescript/17-what-is-the-difference-between-null-and-undefined-in-typescript/page.mdx' />

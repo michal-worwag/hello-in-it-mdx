@@ -1,7 +1,8 @@
 import GithubEdit from '@/components/github-edit';
 
 export const metadata = {
-  title: 'What is the Difference Between "let," "var," and "const" in TypeScript?',
+  title:
+    'What is the Difference Between "let," "var," and "const" in TypeScript?',
   alternates: {
     canonical:
       '/questions/typescript/18-what-is-the-difference-between-let-var-and-const-in-typescript',
@@ -10,5 +11,26 @@ export const metadata = {
 
 # What is the Difference Between "let," "var," and "const" in TypeScript?
 
-<GithubEdit link='/questions/typescript/18-what-is-the-difference-between-let-var-and-const-in-typescript/page.mdx' />
+In TypeScript, `var`, `let`, and `const` are used to declare variables, each with distinct behaviors regarding scope, hoisting, and mutability:
 
+1. `var`:
+
+- Scope: Function-scoped; accessible throughout the function in which it's declared.
+- Hoisting: Variables declared with var are hoisted to the top of their scope and initialized with undefined, allowing access before declaration without causing errors.
+- Re-declaration: Permits re-declaration within the same scope, which can lead to unintended overwrites.
+
+2. `let`:
+
+- Scope: Block-scoped; confined to the block ({}) in which it's declared, enhancing control over variable accessibility.
+- Hoisting: Variables declared with let are hoisted but not initialized, resulting in a ReferenceError if accessed before declaration.
+- Re-declaration: Does not allow re-declaration within the same scope, preventing accidental overwrites.
+
+3. `const`:
+
+- Scope: Block-scoped, similar to let.
+- Hoisting: Behaves like let in terms of hoisting; accessing before declaration throws a ReferenceError.
+- Mutability: Requires an initializer and prevents re-assignment, ensuring the variable remains constant.
+
+Understanding these differences is crucial for writing predictable and maintainable TypeScript code.
+
+<GithubEdit link='/questions/typescript/18-what-is-the-difference-between-let-var-and-const-in-typescript/page.mdx' />
