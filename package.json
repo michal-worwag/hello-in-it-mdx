@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@next/mdx": "15.2.1",
-    "@next/third-parties": "^15.2.2",
+    "@next/third-parties": "^15.2.3",
     "@tailwindcss/postcss": "^4.0.14",
     "next": "^15.2.3",
     "next-view-transitions": "^0.3.4",
