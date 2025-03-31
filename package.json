@@ -16,7 +16,7 @@
     "next-view-transitions": "^0.3.4",
     "postgres": "^3.4.5",
     "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react-dom": "19.1.0",
     "sugar-high": "^0.9.3"
   },
   "devDependencies": {
