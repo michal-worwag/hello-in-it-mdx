@@ -20,7 +20,7 @@
     "sugar-high": "^0.9.3"
   },
   "devDependencies": {
-    "@types/node": "^22.13.12",
+    "@types/node": "^22.14.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.0.4",
     "postcss": "^8.5.3",
