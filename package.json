@@ -11,7 +11,7 @@
   "dependencies": {
     "@next/mdx": "15.3.1",
     "@next/third-parties": "^15.3.1",
-    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/postcss": "^4.1.5",
     "next": "^15.3.1",
     "next-view-transitions": "^0.3.4",
     "postgres": "^3.4.5",
