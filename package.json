@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/mdx": "15.3.1",
+    "@next/mdx": "15.3.2",
     "@next/third-parties": "^15.3.2",
     "@tailwindcss/postcss": "^4.1.6",
     "next": "^15.3.1",
