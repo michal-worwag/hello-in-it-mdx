@@ -16,13 +16,13 @@
     "next-view-transitions": "^0.3.4",
     "postgres": "^3.4.7",
     "react": "19.1.1",
-    "react-dom": "19.1.1",
+    "react-dom": "19.2.0",
     "sugar-high": "^0.9.3"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.15",
-    "@types/react-dom": "^19.1.9",
+    "@types/react-dom": "^19.2.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
